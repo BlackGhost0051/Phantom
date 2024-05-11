@@ -17,6 +17,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         DataBaseManager dataBaseManager = new DataBaseManager(this);
+        dataBaseManager.createDatabase("test1.db");
+        dataBaseManager.createDatabase("test2.db");
+        dataBaseManager.createDatabase("test3.db");
 
         if (dataBaseManager.createDatabase("test.db")) {
             Log.d("Test", "Database created");
