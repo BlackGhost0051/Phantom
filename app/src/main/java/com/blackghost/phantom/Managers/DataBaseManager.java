@@ -29,7 +29,7 @@ public class DataBaseManager {
             dbDir.mkdirs();
 
             SQLiteDatabase db = SQLiteDatabase.openOrCreateDatabase(dbFile, null);
-            db.execSQL("CREATE TABLE IF NOT EXISTS user (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT)");
+            db.execSQL("CREATE TABLE IF NOT EXISTS cell_tower_base (act TEXT,mcc TEXT,mnc TEXT,lac TEXT,cellid TEXT)");
             db.close();
             return true;
         } catch (Exception e) {
