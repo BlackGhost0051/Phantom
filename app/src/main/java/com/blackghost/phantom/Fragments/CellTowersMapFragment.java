@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import com.blackghost.phantom.R;
 
 import org.osmdroid.api.IMapController;
+import org.osmdroid.config.Configuration;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
@@ -34,6 +36,9 @@ public class CellTowersMapFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cell_towers_map, container, false);
 
         mMap = view.findViewById(R.id.osmmap);
+
+        Configuration.getInstance().setUserAgentValue("Phantom/0.0");
+
         controller = mMap.getController();
 
         controller.setZoom(10.0);
