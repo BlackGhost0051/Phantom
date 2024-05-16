@@ -37,6 +37,8 @@ public class CellTowersMapFragment extends Fragment {
 
         mMap = view.findViewById(R.id.osmmap);
 
+        mMap.setMultiTouchControls(true);
+
         Configuration.getInstance().setUserAgentValue("Phantom/0.0");
 
         controller = mMap.getController();
