@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.blackghost.phantom.Fragments.CellTowersMapFragment;
 import com.blackghost.phantom.Fragments.MainFragment;
 import com.blackghost.phantom.Fragments.SettingsFragment;
 import com.blackghost.phantom.Managers.DataBaseManager;
@@ -47,6 +48,12 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                if (item.getItemId() == R.id.CellTowersMap){
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                    toolbar.setTitle("Cell Towers Map");
+                    fragmentR(new CellTowersMapFragment());
+                    return true;
+                }
                 if (item.getItemId() == R.id.settings) {
                     drawerLayout.closeDrawer(GravityCompat.START);
                     toolbar.setTitle("Settings");
