@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="Cell Towers">
+        <SwitchPreference
+            android:key="local_data_base"
+            android:title="Use local database."
+            android:summary="Click to switch on or off"
+            android:defaultValue="true"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>
