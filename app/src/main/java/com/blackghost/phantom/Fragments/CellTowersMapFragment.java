@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blackghost.phantom.Class.CellTowerTask;
 import com.blackghost.phantom.R;
 
 import org.osmdroid.api.IMapController;
@@ -45,6 +46,9 @@ public class CellTowersMapFragment extends Fragment {
 
         controller.setZoom(10.0);
         controller.setCenter(new GeoPoint(51.5074, -0.1278));
+
+        String bbox = "20.978136062622074,50.01786707355468,20.984798669815067,50.02117598342286";
+        CellTowerTask.fetchCellTowers(bbox);
 
         return view;
     }
