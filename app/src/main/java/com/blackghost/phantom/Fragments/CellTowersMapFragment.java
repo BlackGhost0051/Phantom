@@ -57,11 +57,27 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
         mMap.getOverlayManager().add(rotationGestureOverlay);
 
         String bbox = "20.978136062622074,50.01786707355468,20.984798669815067,50.02117598342286";
+        mMap.post(new Runnable() {
+            @Override
+            public void run() {
+                GeoPoint center = (GeoPoint) mMap.getMapCenter();
+                double latitude = center.getLatitude();
+                double longitude = center.getLongitude();
+
+                Log.d("Lat", String.valueOf(latitude));
+                Log.d("Lon", String.valueOf(longitude));
+            }
+        });
+        /*cellTowersTask(bbox);
         cellTowersTask(bbox);
         cellTowersTask(bbox);
         cellTowersTask(bbox);
-        cellTowersTask(bbox);
-        cellTowersTask(bbox);
+        cellTowersTask(bbox);*/
+
+        // https://opencellid.org/#zoom=17&lat=50.017742&lon=20.98434
+        // https://opencellid.org/ajax/getCells.php?bbox=20.98101139068604,50.016088440333085,20.987673997879032,50.01939747269533
+        // bbox
+        // is it a square?
 
         return view;
     }
