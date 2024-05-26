@@ -3,7 +3,6 @@ package com.blackghost.phantom.Class;
 import android.os.AsyncTask;
 import android.util.Log;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,12 +14,19 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class CellTowerTask extends AsyncTask<String, Void, JSONObject> {
-
     private static final String TAG = "CellTowerTask";
+    private final String baseUrl;
+    private final OnTaskCompleted listener;
+
+    public CellTowerTask(String baseUrl, OnTaskCompleted listener) {
+        this.baseUrl = baseUrl;
+        this.listener = listener;
+    }
 
     @Override
     protected JSONObject doInBackground(String... params) {
-        String urlString = params[0]; // URL для запиту
+        String bbox = params[0];
+        String urlString = baseUrl + bbox;
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         String jsonResponse = "";
@@ -32,7 +38,7 @@ public class CellTowerTask extends AsyncTask<String, Void, JSONObject> {
             urlConnection.connect();
 
             InputStream inputStream = urlConnection.getInputStream();
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder buffer = new StringBuilder();
             if (inputStream == null) {
                 return null;
             }
@@ -40,7 +46,7 @@ public class CellTowerTask extends AsyncTask<String, Void, JSONObject> {
 
             String line;
             while ((line = reader.readLine()) != null) {
-                buffer.append(line + "\n");
+                buffer.append(line).append("\n");
             }
 
             if (buffer.length() == 0) {
@@ -74,14 +80,12 @@ public class CellTowerTask extends AsyncTask<String, Void, JSONObject> {
 
     @Override
     protected void onPostExecute(JSONObject result) {
-        if (result != null) {
-            Log.d(TAG, "JSON Response: " + result.toString());
+        if (listener != null) {
+            listener.onTaskCompleted(result);
         }
     }
 
-    public static void fetchCellTowers(String bbox) {
-        String baseUrl = "https://opencellid.org/ajax/getCells.php?bbox=";
-        String url = baseUrl + bbox;
-        new CellTowerTask().execute(url);
+    public interface OnTaskCompleted {
+        void onTaskCompleted(JSONObject result);
     }
 }
