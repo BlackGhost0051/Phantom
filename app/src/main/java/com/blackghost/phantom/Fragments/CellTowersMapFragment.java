@@ -18,12 +18,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
+import org.osmdroid.events.MapListener;
+import org.osmdroid.events.ScrollEvent;
+import org.osmdroid.events.ZoomEvent;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
 import org.osmdroid.views.overlay.compass.CompassOverlay;
-import org.osmdroid.views.overlay.gestures.RotationGestureDetector;
 import org.osmdroid.views.overlay.gestures.RotationGestureOverlay;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
@@ -88,6 +90,25 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                 Log.d("TopLeft Lon", String.valueOf(topLeftLongitude));
                 Log.d("BottomRight Lat", String.valueOf(bottomRightLatitude));
                 Log.d("BottomRight Lon", String.valueOf(bottomRightLongitude));
+            }
+        });
+
+        mMap.addMapListener(new MapListener() {
+            @Override
+            public boolean onScroll(ScrollEvent event) {
+                GeoPoint center = (GeoPoint) mMap.getMapCenter();
+                double latitude = center.getLatitude();
+                double longitude = center.getLongitude();
+
+                Log.d("Map Scroll", "Lat: " + latitude + ", Lon: " + longitude);
+                return true;
+            }
+
+            @Override
+            public boolean onZoom(ZoomEvent event) {
+                double zoomLevel = event.getZoomLevel();
+                Log.d("Map Zoom", "Zoom Level: " + zoomLevel);
+                return true;
             }
         });
 
