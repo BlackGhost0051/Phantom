@@ -1,5 +1,6 @@
 package com.blackghost.phantom.Fragments;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -144,6 +145,8 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
 
                 GeoPoint markerPoint = new GeoPoint(latitude, longitude);
                 Marker marker = new Marker(mMap);
+                Drawable icon = getResources().getDrawable(R.drawable.baseline_settings_24);
+                marker.setIcon(icon);
                 marker.setPosition(markerPoint);
 
                 mMap.getOverlays().add(marker);
