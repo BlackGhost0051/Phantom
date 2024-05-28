@@ -64,7 +64,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
         rotationGestureOverlay.setEnabled(true);
         mMap.getOverlayManager().add(rotationGestureOverlay);
 
-        String bbox = "20.978136062622074,50.01786707355468,20.984798669815067,50.02117598342286";
+        //String bbox = "20.978136062622074,50.01786707355468,20.984798669815067,50.02117598342286";
         mMap.post(new Runnable() {
             @Override
             public void run() {
@@ -102,7 +102,20 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                 double latitude = center.getLatitude();
                 double longitude = center.getLongitude();
 
+                int width = mMap.getWidth();
+                int height = mMap.getHeight();
+
+                GeoPoint topLeft = (GeoPoint) mMap.getProjection().fromPixels(0, 0);
+                GeoPoint bottomRight = (GeoPoint) mMap.getProjection().fromPixels(width, height);
+                double topLeftLatitude = topLeft.getLatitude();
+                double topLeftLongitude = topLeft.getLongitude();
+                double bottomRightLatitude = bottomRight.getLatitude();
+                double bottomRightLongitude = bottomRight.getLongitude();
+
                 Log.d("Map Scroll", "Lat: " + latitude + ", Lon: " + longitude);
+                //String bbox = String.valueOf(topLeftLongitude) + "," +  String.valueOf(topLeftLatitude)  + "," +  String.valueOf(bottomRightLongitude) + "," + String.valueOf(bottomRightLatitude);
+                //Log.d("bbox", bbox);
+                //cellTowersTask(bbox);
                 return true;
             }
 
@@ -114,7 +127,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
             }
         });
 
-        cellTowersTask(bbox);
+        //cellTowersTask(bbox);
         /*cellTowersTask(bbox);
         cellTowersTask(bbox);
         cellTowersTask(bbox);
