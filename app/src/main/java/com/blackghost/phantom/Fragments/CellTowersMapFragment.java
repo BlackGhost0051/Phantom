@@ -1,5 +1,6 @@
 package com.blackghost.phantom.Fragments;
 
+import android.app.AlertDialog;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
@@ -149,6 +150,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                 marker.setIcon(icon);
                 marker.setPosition(markerPoint);
 
+
                 mMap.getOverlays().add(marker);
 
                 String radio = properties.getString("radio");
@@ -160,6 +162,23 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                 int range = properties.getInt("range");
                 long created = properties.getLong("created");
                 long updated = properties.getLong("updated");
+
+                marker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
+                    @Override
+                    public boolean onMarkerClick(Marker marker, MapView mapView) {
+                        String info = "Radio: " + radio + "\n" +
+                                "MCC: " + mcc + "\n" +
+                                "Net: " + net + "\n" +
+                                "Cell: " + cell + "\n" +
+                                "Area: " + area + "\n" +
+                                "Samples: " + samples + "\n" +
+                                "Range: " + range + "\n" +
+                                "Created: " + created + "\n" +
+                                "Updated: " + updated;
+                        showIconInfoAlert(info);
+                        return true;
+                    }
+                });
 
                 Log.d("Feature " + i, "Coordinates: [" + longitude + ", " + latitude + "]");
                 Log.d("Feature " + i, "Radio: " + radio + ", MCC: " + mcc + ", Net: " + net);
@@ -177,4 +196,12 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
         cellTowerTask.execute(bbox);
     }
 
+    private void showIconInfoAlert(String info){
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setTitle("Marker Information")
+                .setMessage(info)
+                .setPositiveButton("OK", null)
+                .create()
+                .show();
+    }
 }
