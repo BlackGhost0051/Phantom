@@ -87,7 +87,6 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
 
                 Log.d("Lat", String.valueOf(latitude));
                 Log.d("Lon", String.valueOf(longitude));
-
                 Log.d("TopLeft Lat", String.valueOf(topLeftLatitude));
                 Log.d("TopLeft Lon", String.valueOf(topLeftLongitude));
                 Log.d("BottomRight Lat", String.valueOf(bottomRightLatitude));
@@ -113,9 +112,9 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                 double bottomRightLongitude = bottomRight.getLongitude();
 
                 Log.d("Map Scroll", "Lat: " + latitude + ", Lon: " + longitude);
-                //String bbox = String.valueOf(topLeftLongitude) + "," +  String.valueOf(topLeftLatitude)  + "," +  String.valueOf(bottomRightLongitude) + "," + String.valueOf(bottomRightLatitude);
-                //Log.d("bbox", bbox);
-                //cellTowersTask(bbox);
+                String bbox = String.valueOf(topLeftLongitude) + "," +  String.valueOf(topLeftLatitude)  + "," +  String.valueOf(bottomRightLongitude) + "," + String.valueOf(bottomRightLatitude);
+                Log.d("bbox", bbox);
+                cellTowersTask(bbox);
                 return true;
             }
 
