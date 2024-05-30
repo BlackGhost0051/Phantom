@@ -94,37 +94,37 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
 //            }
 //        });
 
-        mMap.addMapListener(new MapListener() {
-            @Override
-            public boolean onScroll(ScrollEvent event) {
-                GeoPoint center = (GeoPoint) mMap.getMapCenter();
-                double latitude = center.getLatitude();
-                double longitude = center.getLongitude();
-
-                int width = mMap.getWidth();
-                int height = mMap.getHeight();
-
-                GeoPoint topLeft = (GeoPoint) mMap.getProjection().fromPixels(0, 0);
-                GeoPoint bottomRight = (GeoPoint) mMap.getProjection().fromPixels(width, height);
-                double topLeftLatitude = topLeft.getLatitude();
-                double topLeftLongitude = topLeft.getLongitude();
-                double bottomRightLatitude = bottomRight.getLatitude();
-                double bottomRightLongitude = bottomRight.getLongitude();
-
-                Log.d("Map Scroll", "Lat: " + latitude + ", Lon: " + longitude);
-                String bbox = String.valueOf(topLeftLongitude) + "," +  String.valueOf(topLeftLatitude)  + "," +  String.valueOf(bottomRightLongitude) + "," + String.valueOf(bottomRightLatitude);
-                Log.d("bbox", bbox);
-                cellTowersTask(bbox);
-                return true;
-            }
-
-            @Override
-            public boolean onZoom(ZoomEvent event) {
-                double zoomLevel = event.getZoomLevel();
-                Log.d("Map Zoom", "Zoom Level: " + zoomLevel);
-                return true;
-            }
-        });
+//        mMap.addMapListener(new MapListener() {
+//            @Override
+//            public boolean onScroll(ScrollEvent event) {
+//                GeoPoint center = (GeoPoint) mMap.getMapCenter();
+//                double latitude = center.getLatitude();
+//                double longitude = center.getLongitude();
+//
+//                int width = mMap.getWidth();
+//                int height = mMap.getHeight();
+//
+//                GeoPoint topLeft = (GeoPoint) mMap.getProjection().fromPixels(0, 0);
+//                GeoPoint bottomRight = (GeoPoint) mMap.getProjection().fromPixels(width, height);
+//                double topLeftLatitude = topLeft.getLatitude();
+//                double topLeftLongitude = topLeft.getLongitude();
+//                double bottomRightLatitude = bottomRight.getLatitude();
+//                double bottomRightLongitude = bottomRight.getLongitude();
+//
+//                Log.d("Map Scroll", "Lat: " + latitude + ", Lon: " + longitude);
+//                String bbox = String.valueOf(topLeftLongitude) + "," +  String.valueOf(topLeftLatitude)  + "," +  String.valueOf(bottomRightLongitude) + "," + String.valueOf(bottomRightLatitude);
+//                Log.d("bbox", bbox);
+//                cellTowersTask(bbox);
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onZoom(ZoomEvent event) {
+//                double zoomLevel = event.getZoomLevel();
+//                Log.d("Map Zoom", "Zoom Level: " + zoomLevel);
+//                return true;
+//            }
+//        });
 
         //cellTowersTask(bbox);
         /*cellTowersTask(bbox);
