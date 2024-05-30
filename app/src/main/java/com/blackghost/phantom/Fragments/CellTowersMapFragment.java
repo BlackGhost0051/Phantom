@@ -65,34 +65,34 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
         mMap.getOverlayManager().add(rotationGestureOverlay);
 
         //String bbox = "20.978136062622074,50.01786707355468,20.984798669815067,50.02117598342286";
-        mMap.post(new Runnable() {
-            @Override
-            public void run() {
-                int width = mMap.getWidth();
-                int height = mMap.getHeight();
-
-                GeoPoint center = (GeoPoint) mMap.getMapCenter();
-                GeoPoint topLeft = (GeoPoint) mMap.getProjection().fromPixels(0, 0);
-                GeoPoint bottomRight = (GeoPoint) mMap.getProjection().fromPixels(width, height);
-
-                double latitude = center.getLatitude();
-                double longitude = center.getLongitude();
-
-                double topLeftLatitude = topLeft.getLatitude();
-                double topLeftLongitude = topLeft.getLongitude();
-                double bottomRightLatitude = bottomRight.getLatitude();
-                double bottomRightLongitude = bottomRight.getLongitude();
-
-
-
-                Log.d("Lat", String.valueOf(latitude));
-                Log.d("Lon", String.valueOf(longitude));
-                Log.d("TopLeft Lat", String.valueOf(topLeftLatitude));
-                Log.d("TopLeft Lon", String.valueOf(topLeftLongitude));
-                Log.d("BottomRight Lat", String.valueOf(bottomRightLatitude));
-                Log.d("BottomRight Lon", String.valueOf(bottomRightLongitude));
-            }
-        });
+//        mMap.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                int width = mMap.getWidth();
+//                int height = mMap.getHeight();
+//
+//                GeoPoint center = (GeoPoint) mMap.getMapCenter();
+//                GeoPoint topLeft = (GeoPoint) mMap.getProjection().fromPixels(0, 0);
+//                GeoPoint bottomRight = (GeoPoint) mMap.getProjection().fromPixels(width, height);
+//
+//                double latitude = center.getLatitude();
+//                double longitude = center.getLongitude();
+//
+//                double topLeftLatitude = topLeft.getLatitude();
+//                double topLeftLongitude = topLeft.getLongitude();
+//                double bottomRightLatitude = bottomRight.getLatitude();
+//                double bottomRightLongitude = bottomRight.getLongitude();
+//
+//
+//
+//                Log.d("Lat", String.valueOf(latitude));
+//                Log.d("Lon", String.valueOf(longitude));
+//                Log.d("TopLeft Lat", String.valueOf(topLeftLatitude));
+//                Log.d("TopLeft Lon", String.valueOf(topLeftLongitude));
+//                Log.d("BottomRight Lat", String.valueOf(bottomRightLatitude));
+//                Log.d("BottomRight Lon", String.valueOf(bottomRightLongitude));
+//            }
+//        });
 
         mMap.addMapListener(new MapListener() {
             @Override
