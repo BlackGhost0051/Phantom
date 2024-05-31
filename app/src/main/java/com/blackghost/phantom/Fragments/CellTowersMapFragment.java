@@ -1,10 +1,12 @@
 package com.blackghost.phantom.Fragments;
 
 import android.app.AlertDialog;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -50,6 +52,10 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cell_towers_map, container, false);
 
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        boolean useLocalDatabase = sharedPreferences.getBoolean("local_data_base", true);
+        String startPosition = sharedPreferences.getString("start_position", "51.509865, -0.118092");
+        Log.d("Preferences", String.valueOf(useLocalDatabase) + " " + startPosition);
         mMap = view.findViewById(R.id.osmmap);
 
         mMap.setMultiTouchControls(true);
