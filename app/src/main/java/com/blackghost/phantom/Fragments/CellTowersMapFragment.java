@@ -36,6 +36,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
     private MapView mMap;
     private IMapController controller;
     private MyLocationNewOverlay mMyLocationOverlay;
+    private GeoPoint lastCenter = null;
     public CellTowersMapFragment() {
         // Required empty public constructor
     }
@@ -64,95 +65,59 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
         rotationGestureOverlay.setEnabled(true);
         mMap.getOverlayManager().add(rotationGestureOverlay);
 
-        //String bbox = "20.978136062622074,50.01786707355468,20.984798669815067,50.02117598342286";
-//        mMap.post(new Runnable() {
-//            @Override
-//            public void run() {
-//                int width = mMap.getWidth();
-//                int height = mMap.getHeight();
-//
-//                GeoPoint center = (GeoPoint) mMap.getMapCenter();
-//                GeoPoint topLeft = (GeoPoint) mMap.getProjection().fromPixels(0, 0);
-//                GeoPoint bottomRight = (GeoPoint) mMap.getProjection().fromPixels(width, height);
-//
-//                double latitude = center.getLatitude();
-//                double longitude = center.getLongitude();
-//
-//                double topLeftLatitude = topLeft.getLatitude();
-//                double topLeftLongitude = topLeft.getLongitude();
-//                double bottomRightLatitude = bottomRight.getLatitude();
-//                double bottomRightLongitude = bottomRight.getLongitude();
-//
-//
-//
-//                Log.d("Lat", String.valueOf(latitude));
-//                Log.d("Lon", String.valueOf(longitude));
-//                Log.d("TopLeft Lat", String.valueOf(topLeftLatitude));
-//                Log.d("TopLeft Lon", String.valueOf(topLeftLongitude));
-//                Log.d("BottomRight Lat", String.valueOf(bottomRightLatitude));
-//                Log.d("BottomRight Lon", String.valueOf(bottomRightLongitude));
-//            }
-//        });
-
         mMap.addMapListener(new MapListener() {
             @Override
             public boolean onScroll(ScrollEvent event) {
                 double zoomLevel = mMap.getZoomLevelDouble();
-                Log.d("ZOOOOOOOOM", String.valueOf(zoomLevel));
-                if (zoomLevel > 15.0) {
-                    GeoPoint center = (GeoPoint) mMap.getMapCenter();
-                    double latitude = center.getLatitude();
-                    double longitude = center.getLongitude();
 
+                if (zoomLevel > 15.0) {
                     int width = mMap.getWidth();
                     int height = mMap.getHeight();
 
-                    GeoPoint topLeft = (GeoPoint) mMap.getProjection().fromPixels(0, 0);
-                    GeoPoint bottomRight = (GeoPoint) mMap.getProjection().fromPixels(width, height);
-                    double topLeftLatitude = topLeft.getLatitude();
-                    double topLeftLongitude = topLeft.getLongitude();
-                    double bottomRightLatitude = bottomRight.getLatitude();
-                    double bottomRightLongitude = bottomRight.getLongitude();
+                    GeoPoint center = (GeoPoint) mMap.getMapCenter();
 
-                    Log.d("Map Scroll", "Lat: " + latitude + ", Lon: " + longitude);
-                    String bbox = String.valueOf(topLeftLongitude) + "," +  String.valueOf(topLeftLatitude)  + "," +  String.valueOf(bottomRightLongitude) + "," + String.valueOf(bottomRightLatitude);
-                    Log.d("bbox", bbox);
-                    cellTowersTask(bbox);
+                    if(lastCenter != null){
+                        double distance = calculateDistance(center,lastCenter);
+                        Log.d("distance", String.valueOf(distance));
+
+                        if(distance >= 1.0) {  // 1 km
+                            GeoPoint topLeft = (GeoPoint) mMap.getProjection().fromPixels(0, 0);
+                            GeoPoint bottomRight = (GeoPoint) mMap.getProjection().fromPixels(width, height);
+                            double topLeftLatitude = topLeft.getLatitude();
+                            double topLeftLongitude = topLeft.getLongitude();
+                            double bottomRightLatitude = bottomRight.getLatitude();
+                            double bottomRightLongitude = bottomRight.getLongitude();
+                            String bbox = String.valueOf(topLeftLongitude) + "," + String.valueOf(topLeftLatitude) + "," + String.valueOf(bottomRightLongitude) + "," + String.valueOf(bottomRightLatitude);
+                            Log.d("bbox", bbox);
+                            cellTowersTask(bbox);
+
+                            lastCenter = center;
+                        }
+                    } else {
+                            lastCenter = center;
+                    }
                 }
                 return true;
             }
 
             @Override
             public boolean onZoom(ZoomEvent event) {
-//                double zoomLevel = event.getZoomLevel();
-//                Log.d("Map Zoom", "Zoom Level: " + zoomLevel);
-//                if( zoomLevel < 15){
-//                    String bbox = "";
-//                    cellTowersTask(bbox);
-//                }
-
                 return true;
             }
         });
-
-        //cellTowersTask(bbox);
-        /*cellTowersTask(bbox);
-        cellTowersTask(bbox);
-        cellTowersTask(bbox);
-        cellTowersTask(bbox);*/
-
-        // https://opencellid.org/#zoom=17&lat=50.017742&lon=20.98434
-        // https://opencellid.org/ajax/getCells.php?bbox=20.98101139068604,50.016088440333085,20.987673997879032,50.01939747269533
-        // bbox
-        // is it a square?
-
         return view;
     }
 
-    private String getPositionBbox(MapView mMap){
-        String bbox = "";
-
-        return bbox;
+    private double calculateDistance(GeoPoint point1, GeoPoint point2){
+        final int R = 6371;
+        double latDistance = Math.toRadians(point2.getLatitude() - point1.getLatitude());
+        double lonDistance = Math.toRadians(point2.getLongitude() - point1.getLongitude());
+        double a = Math.sin(latDistance / 2) * Math.sin(latDistance / 2)
+                + Math.cos(Math.toRadians(point1.getLatitude())) * Math.cos(Math.toRadians(point2.getLatitude()))
+                * Math.sin(lonDistance / 2) * Math.sin(lonDistance / 2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        double distance = R * c;
+        return distance;
     }
 
     @Override
