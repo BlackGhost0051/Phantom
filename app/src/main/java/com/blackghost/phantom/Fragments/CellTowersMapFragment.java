@@ -58,11 +58,17 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
         String startPosition = sharedPreferences.getString("start_position", "51.509865, -0.118092");
 
         String[] latLong = startPosition.split(",");
+        double startLat;
+        double startLon;
 
-        double startLat = Double.parseDouble(latLong[0]);
-        double startLon = Double.parseDouble(latLong[1]);
+        try {
+            startLat = Double.parseDouble(latLong[0]);
+            startLon = Double.parseDouble(latLong[1]);
+        } catch (NumberFormatException e){
+            startLat = 51.509865;
+            startLon = -0.118092;
+        }
 
-        Log.d("Preferences", String.valueOf(startLat) + " " + String.valueOf(startLon));
         mMap = view.findViewById(R.id.osmmap);
 
         mMap.setMultiTouchControls(true);
@@ -72,12 +78,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
         controller = mMap.getController();
 
         controller.setZoom(10.0);
-        if(startLat != 0.0 && startLon != 0.0){
-            controller.setCenter(new GeoPoint(startLat, startLon));
-        } else {
-            controller.setCenter(new GeoPoint(51.509865, -0.118092));
-        }
-
+        controller.setCenter(new GeoPoint(startLat, startLon));
         RotationGestureOverlay rotationGestureOverlay = new RotationGestureOverlay(mMap);
         rotationGestureOverlay.setEnabled(true);
         mMap.getOverlayManager().add(rotationGestureOverlay);
