@@ -39,6 +39,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
     private IMapController controller;
     private MyLocationNewOverlay mMyLocationOverlay;
     private GeoPoint lastCenter = null;
+    private SharedPreferences sharedPreferences;
     public CellTowersMapFragment() {
         // Required empty public constructor
     }
@@ -52,9 +53,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cell_towers_map, container, false);
 
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        boolean useLocalDatabase = sharedPreferences.getBoolean("local_data_base", true);
-
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         String startPosition = sharedPreferences.getString("start_position", "51.509865, -0.118092");
 
         String[] latLong = startPosition.split(",");
@@ -64,7 +63,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
         try {
             startLat = Double.parseDouble(latLong[0]);
             startLon = Double.parseDouble(latLong[1]);
-        } catch (NumberFormatException e){
+        } catch (Exception e){
             startLat = 51.509865;
             startLon = -0.118092;
         }
