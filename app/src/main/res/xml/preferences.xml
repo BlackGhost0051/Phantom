@@ -2,20 +2,27 @@
 
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="Cell Towers">
-        <SwitchPreference
-            android:key="local_data_base"
-            android:title="Use local database."
-            android:summary="Click to switch on or off"
-            android:defaultValue="true"/>
-
+    <PreferenceCategory android:title="Cell Towers Map">
         <EditTextPreference
             android:key="start_position"
-            android:title="Start position in map."
+            android:title="Start position in map"
             android:summary="Enter the default starting position for the map."
             android:dialogTitle="Set Start Position"
             android:inputType="text"
             android:defaultValue="51.509865, -0.118092"/>
+
+    </PreferenceCategory>
+    <PreferenceCategory android:title="Cell Towers Passive">
+        <SwitchPreference
+            android:key="use_local_data_base"
+            android:title="Use local database"
+            android:summary="Click to enable or disable passive cell tower scanning of the local database."
+            android:defaultValue="true"/>
+        <ListPreference
+            android:key="local_data_bases"
+            android:title="Offline database"
+            android:summary="Select the file for the database."
+            />
     </PreferenceCategory>
 
 </PreferenceScreen>
