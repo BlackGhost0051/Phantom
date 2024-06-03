@@ -87,7 +87,8 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
             public boolean onScroll(ScrollEvent event) {
                 double zoomLevel = mMap.getZoomLevelDouble();
 
-                if (zoomLevel > 15.0) {
+                if (zoomLevel == 16.0 || zoomLevel == 17.0 || zoomLevel == 18.0) {
+                    Log.d("ZOOM" , String.valueOf(zoomLevel));
                     int width = mMap.getWidth();
                     int height = mMap.getHeight();
 
@@ -104,7 +105,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                             double topLeftLongitude = topLeft.getLongitude();
                             double bottomRightLatitude = bottomRight.getLatitude();
                             double bottomRightLongitude = bottomRight.getLongitude();
-                            String bbox = "-0.1297813653945923,51.506638973735306,-0.12575805187225345,51.50824163783352";//String.valueOf(topLeftLongitude) + "," + String.valueOf(topLeftLatitude) + "," + String.valueOf(bottomRightLongitude) + "," + String.valueOf(bottomRightLatitude);
+                            String bbox = String.valueOf(topLeftLongitude) + "," + String.valueOf(topLeftLatitude) + "," + String.valueOf(bottomRightLongitude) + "," + String.valueOf(bottomRightLatitude);
                             Log.d("bbox", bbox);
                             cellTowersTask(bbox);
 
@@ -170,9 +171,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
 
                 if (radio.equals("UMTS")){
                     icon = getResources().getDrawable(R.drawable.baseline_settings_24);
-                    Log.d("TEST", "UMTS");
                 } else if(radio.equals("GSM")){
-                    Log.d("TEST", "GMS");
                     icon = getResources().getDrawable(R.drawable.baseline_map_24);
                 } else if(radio.equals("LTE")){
                     icon = getResources().getDrawable(R.drawable.ic_launcher_background);

@@ -6,9 +6,15 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/CellTowersMap"
+            android:id="@+id/cell_towers_map"
             android:icon="@drawable/baseline_map_24"
             android:title="Cell Towers Map"
+            />
+
+        <item
+            android:id="@+id/cell_tower"
+            android:icon="@drawable/baseline_map_24"
+            android:title="Cell Tower"
             />
 
         <item
