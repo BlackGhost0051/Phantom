@@ -104,7 +104,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                             double topLeftLongitude = topLeft.getLongitude();
                             double bottomRightLatitude = bottomRight.getLatitude();
                             double bottomRightLongitude = bottomRight.getLongitude();
-                            String bbox = String.valueOf(topLeftLongitude) + "," + String.valueOf(topLeftLatitude) + "," + String.valueOf(bottomRightLongitude) + "," + String.valueOf(bottomRightLatitude);
+                            String bbox = "-0.1297813653945923,51.506638973735306,-0.12575805187225345,51.50824163783352";//String.valueOf(topLeftLongitude) + "," + String.valueOf(topLeftLatitude) + "," + String.valueOf(bottomRightLongitude) + "," + String.valueOf(bottomRightLatitude);
                             Log.d("bbox", bbox);
                             cellTowersTask(bbox);
 
@@ -153,15 +153,6 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                 double longitude = coordinates.getDouble(0);
                 double latitude = coordinates.getDouble(1);
 
-                GeoPoint markerPoint = new GeoPoint(latitude, longitude);
-                Marker marker = new Marker(mMap);
-                Drawable icon = getResources().getDrawable(R.drawable.baseline_settings_24);
-                marker.setIcon(icon);
-                marker.setPosition(markerPoint);
-
-
-                mMap.getOverlays().add(marker);
-
                 String radio = properties.getString("radio");
                 String mcc = properties.getString("mcc");
                 String net = properties.getString("net");
@@ -171,6 +162,27 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                 int range = properties.getInt("range");
                 long created = properties.getLong("created");
                 long updated = properties.getLong("updated");
+
+                GeoPoint markerPoint = new GeoPoint(latitude, longitude);
+                Marker marker = new Marker(mMap);
+
+                Drawable icon;
+
+                if (radio.equals("UMTS")){
+                    icon = getResources().getDrawable(R.drawable.baseline_settings_24);
+                    Log.d("TEST", "UMTS");
+                } else if(radio.equals("GSM")){
+                    Log.d("TEST", "GMS");
+                    icon = getResources().getDrawable(R.drawable.baseline_map_24);
+                } else if(radio.equals("LTE")){
+                    icon = getResources().getDrawable(R.drawable.ic_launcher_background);
+                } else {
+                    icon = getResources().getDrawable(R.drawable.ic_launcher_foreground);
+                }
+
+                marker.setIcon(icon);
+                marker.setPosition(markerPoint);
+                mMap.getOverlays().add(marker);
 
                 marker.setOnMarkerClickListener(new Marker.OnMarkerClickListener() {
                     @Override
