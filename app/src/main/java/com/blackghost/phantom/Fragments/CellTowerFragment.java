@@ -8,11 +8,13 @@ import android.telephony.CellInfo;
 import android.telephony.CellInfoGsm;
 import android.telephony.CellInfoLte;
 import android.telephony.CellInfoWcdma;
+
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.telecom.TelecomManager;
 import android.telephony.TelephonyManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,5 +51,20 @@ public class CellTowerFragment extends Fragment {
 
     private void getCellTowerInfo() {
         TelephonyManager telephonyManager = (TelephonyManager) getActivity().getSystemService(getContext().TELEPHONY_SERVICE);
+
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+            return;
+        }
+        if (telephonyManager != null) {
+            List<CellInfo> cellInfoList = telephonyManager.getAllCellInfo();
+            if (cellInfoList != null && !cellInfoList.isEmpty()) {
+                Log.d("PHON", cellInfoList.toString());
+            } else {
+                Log.d("PHON", "No cell info available");
+            }
+        } else {
+            Log.d("PHON", "TelephonyManager is null");
+        }
     }
 }
