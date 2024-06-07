@@ -11,6 +11,12 @@
             android:inputType="text"
             android:defaultValue="51.509865, -0.118092"/>
 
+        <SwitchPreference
+            android:key="save_last_position_map"
+            android:title="Save the last position on the map"
+            android:defaultValue="true"
+            />
+
     </PreferenceCategory>
     <PreferenceCategory android:title="Cell Towers Passive">
         <SwitchPreference
