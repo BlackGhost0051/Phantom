@@ -60,6 +60,7 @@ public class CellTowerFragment extends Fragment {
             List<CellInfo> cellInfoList = telephonyManager.getAllCellInfo();
             if (cellInfoList != null && !cellInfoList.isEmpty()) {
                 Log.d("PHON", cellInfoList.toString());
+                info_cell_tower.setText(cellInfoList.toString());
             } else {
                 Log.d("PHON", "No cell info available");
             }
