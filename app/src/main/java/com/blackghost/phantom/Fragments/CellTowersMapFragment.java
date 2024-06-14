@@ -87,7 +87,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
             public boolean onScroll(ScrollEvent event) {
                 double zoomLevel = mMap.getZoomLevelDouble();
 
-                if (zoomLevel < 20.0) {
+                if (zoomLevel > 16.0) {
                     Log.d("ZOOM" , String.valueOf(zoomLevel));
                     int width = mMap.getWidth();
                     int height = mMap.getHeight();
@@ -99,6 +99,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                         Log.d("distance", String.valueOf(distance));
 
                         if(distance >= 1.0) {  // 1 km
+                            clearMarkers();
                             GeoPoint southWest = (GeoPoint) mMap.getProjection().fromPixels(0, height);
                             GeoPoint northEast = (GeoPoint) mMap.getProjection().fromPixels(width, 0);
 
@@ -227,5 +228,10 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                 .setPositiveButton("OK", null)
                 .create()
                 .show();
+    }
+
+    private void clearMarkers() {
+        mMap.getOverlays().clear();
+        mMap.invalidate();
     }
 }
