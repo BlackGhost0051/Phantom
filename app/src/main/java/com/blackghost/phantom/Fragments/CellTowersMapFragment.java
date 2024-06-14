@@ -78,16 +78,16 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
 
         controller.setZoom(10.0);
         controller.setCenter(new GeoPoint(startLat, startLon));
-        RotationGestureOverlay rotationGestureOverlay = new RotationGestureOverlay(mMap);
-        rotationGestureOverlay.setEnabled(true);
-        mMap.getOverlayManager().add(rotationGestureOverlay);
+        //RotationGestureOverlay rotationGestureOverlay = new RotationGestureOverlay(mMap);
+        //rotationGestureOverlay.setEnabled(true);
+        //mMap.getOverlayManager().add(rotationGestureOverlay);
 
         mMap.addMapListener(new MapListener() {
             @Override
             public boolean onScroll(ScrollEvent event) {
                 double zoomLevel = mMap.getZoomLevelDouble();
 
-                if (zoomLevel == 16.0 || zoomLevel == 17.0 || zoomLevel == 18.0) {
+                if (zoomLevel < 20.0) {
                     Log.d("ZOOM" , String.valueOf(zoomLevel));
                     int width = mMap.getWidth();
                     int height = mMap.getHeight();
@@ -99,13 +99,15 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                         Log.d("distance", String.valueOf(distance));
 
                         if(distance >= 1.0) {  // 1 km
-                            GeoPoint topLeft = (GeoPoint) mMap.getProjection().fromPixels(0, 0);
-                            GeoPoint bottomRight = (GeoPoint) mMap.getProjection().fromPixels(width, height);
-                            double topLeftLatitude = topLeft.getLatitude();
-                            double topLeftLongitude = topLeft.getLongitude();
-                            double bottomRightLatitude = bottomRight.getLatitude();
-                            double bottomRightLongitude = bottomRight.getLongitude();
-                            String bbox = String.valueOf(topLeftLongitude) + "," + String.valueOf(topLeftLatitude) + "," + String.valueOf(bottomRightLongitude) + "," + String.valueOf(bottomRightLatitude);
+                            GeoPoint southWest = (GeoPoint) mMap.getProjection().fromPixels(0, height);
+                            GeoPoint northEast = (GeoPoint) mMap.getProjection().fromPixels(width, 0);
+
+                            double southWestLatitude = southWest.getLatitude();
+                            double southWestLongitude = southWest.getLongitude();
+                            double northEastLatitude = northEast.getLatitude();
+                            double northEastLongitude = northEast.getLongitude();
+
+                            String bbox = southWestLongitude + "," + southWestLatitude + "," + northEastLongitude + "," + northEastLatitude;
                             Log.d("bbox", bbox);
                             cellTowersTask(bbox);
 
@@ -212,6 +214,8 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
     }
 
     private void cellTowersTask(String bbox){
+        String url = "https://opencellid.org/ajax/getCells.php?bbox=" + bbox;
+        Log.d("URL", url);
         CellTowerTask cellTowerTask = new CellTowerTask("https://opencellid.org/ajax/getCells.php?bbox=", this::onTaskCompleted);
         cellTowerTask.execute(bbox);
     }
