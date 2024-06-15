@@ -173,11 +173,11 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                 Drawable icon;
 
                 if (radio.equals("UMTS")){
-                    icon = getResources().getDrawable(R.drawable.baseline_settings_24);
+                    icon = getResources().getDrawable(R.drawable.umts_icon);
                 } else if(radio.equals("GSM")){
-                    icon = getResources().getDrawable(R.drawable.baseline_map_24);
+                    icon = getResources().getDrawable(R.drawable.gsm_icon);
                 } else if(radio.equals("LTE")){
-                    icon = getResources().getDrawable(R.drawable.ic_launcher_background);
+                    icon = getResources().getDrawable(R.drawable.lte_icon);
                 } else {
                     icon = getResources().getDrawable(R.drawable.ic_launcher_foreground);
                 }
