@@ -99,7 +99,6 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                         Log.d("distance", String.valueOf(distance));
                         Log.d("Test dinamic distance", String.valueOf( 4.0 / zoomLevel));
                         if(distance >= 4.0 / zoomLevel) {
-                            clearMarkers();
                             GeoPoint southWest = (GeoPoint) mMap.getProjection().fromPixels(0, height);
                             GeoPoint northEast = (GeoPoint) mMap.getProjection().fromPixels(width, 0);
 
@@ -146,6 +145,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
         Log.d("JSON", result.toString());
 
         try {
+            clearMarkers();
             JSONArray features = result.getJSONArray("features");
 
             for (int i = 0; i < features.length(); i++) {
