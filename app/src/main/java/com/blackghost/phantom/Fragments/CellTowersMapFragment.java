@@ -78,9 +78,9 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
 
         controller.setZoom(10.0);
         controller.setCenter(new GeoPoint(startLat, startLon));
-        //RotationGestureOverlay rotationGestureOverlay = new RotationGestureOverlay(mMap);
-        //rotationGestureOverlay.setEnabled(true);
-        //mMap.getOverlayManager().add(rotationGestureOverlay);
+        RotationGestureOverlay rotationGestureOverlay = new RotationGestureOverlay(mMap);
+        rotationGestureOverlay.setEnabled(true);
+        mMap.getOverlayManager().add(rotationGestureOverlay);
 
         mMap.addMapListener(new MapListener() {
             @Override
