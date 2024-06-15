@@ -97,8 +97,8 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                     if(lastCenter != null){
                         double distance = calculateDistance(center,lastCenter);
                         Log.d("distance", String.valueOf(distance));
-
-                        if(distance >= 1.0) {  // 1 km
+                        Log.d("Test dinamic distance", String.valueOf( 4.0 / zoomLevel));
+                        if(distance >= 4.0 / zoomLevel) {
                             clearMarkers();
                             GeoPoint southWest = (GeoPoint) mMap.getProjection().fromPixels(0, height);
                             GeoPoint northEast = (GeoPoint) mMap.getProjection().fromPixels(width, 0);
