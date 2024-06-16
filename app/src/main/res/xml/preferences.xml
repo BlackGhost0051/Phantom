@@ -25,10 +25,9 @@
             android:title="Use local database"
             android:summary="Click to enable or disable passive cell tower scanning of the local database."
             android:defaultValue="true"/>
-        <ListPreference
-            android:key="local_data_bases"
-            android:title="Offline database"
-            android:summary="Select the file for the database."
+        <EditTextPreference
+            android:title="API Key"
+            android:key="cell_api_key"
             />
     </PreferenceCategory>
 
