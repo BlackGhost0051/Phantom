@@ -19,7 +19,7 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:title="Phantom"
+            app:title="@string/app_name"
             app:titleTextColor="@color/black"
             android:background="@color/white"
             android:elevation="3dp"
