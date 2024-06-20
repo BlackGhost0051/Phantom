@@ -3,4 +3,16 @@
 
     <string name="open">open</string>
     <string name="close">close</string>
+
+
+    <string name="start_position_title_preferences">Start position in map</string>
+    <string name="start_position_summary_preferences">Enter the default starting position for the map.</string>
+    <string name="start_position_dialogTitle_preferences">Set Start Position</string>
+    
+    <string name="save_last_position_map_title_preferences">Save the last position on the map</string>
+
+    <string name="use_local_data_base_title_preferences">Use local database</string>
+    <string name="use_local_data_base_summary_preferences">Click to enable or disable passive cell tower scanning of the local database.</string>
+
+    <string name="cell_api_key_title_preferences">API Key</string>
 </resources>

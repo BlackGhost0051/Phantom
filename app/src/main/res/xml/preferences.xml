@@ -6,15 +6,15 @@
     <PreferenceCategory android:title="Cell Towers Map">
         <EditTextPreference
             android:key="start_position"
-            android:title="Start position in map"
-            android:summary="Enter the default starting position for the map."
-            android:dialogTitle="Set Start Position"
+            android:title="@string/start_position_title_preferences"
+            android:summary="@string/start_position_summary_preferences"
+            android:dialogTitle="@string/start_position_dialogTitle_preferences"
             android:inputType="text"
             android:defaultValue="51.509865, -0.118092"/>
 
         <SwitchPreference
             android:key="save_last_position_map"
-            android:title="Save the last position on the map"
+            android:title="@string/save_last_position_map_title_preferences"
             android:defaultValue="true"
             />
 
@@ -22,12 +22,12 @@
     <PreferenceCategory android:title="Cell Towers Passive">
         <SwitchPreference
             android:key="use_local_data_base"
-            android:title="Use local database"
-            android:summary="Click to enable or disable passive cell tower scanning of the local database."
+            android:title="@string/use_local_data_base_title_preferences"
+            android:summary="@string/use_local_data_base_summary_preferences"
             android:defaultValue="true"/>
         <EditTextPreference
-            android:title="API Key"
             android:key="cell_api_key"
+            android:title="@string/cell_api_key_title_preferences"
             />
     </PreferenceCategory>
 
