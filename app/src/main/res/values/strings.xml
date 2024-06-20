@@ -15,4 +15,5 @@
     <string name="use_local_data_base_summary_preferences">Click to enable or disable passive cell tower scanning of the local database.</string>
 
     <string name="cell_api_key_title_preferences">API Key</string>
+    <string name="cell_api_key_summary_preferences">API Key</string>
 </resources>

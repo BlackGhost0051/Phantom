@@ -28,6 +28,9 @@
         <EditTextPreference
             android:key="cell_api_key"
             android:title="@string/cell_api_key_title_preferences"
+            android:summary="@string/cell_api_key_summary_preferences"
+            android:inputType="text"
+            android:defaultValue=""
             />
     </PreferenceCategory>
 
