@@ -130,6 +130,13 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
         return view;
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        Log.d("onDestroyView","Destroy");
+    }
+
     private double calculateDistance(GeoPoint point1, GeoPoint point2){
         final int R = 6371;
         double latDistance = Math.toRadians(point2.getLatitude() - point1.getLatitude());
@@ -235,5 +242,13 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
     private void clearMarkers() {
         mMap.getOverlays().clear();
         mMap.invalidate();
+    }
+
+    private void saveLastPosition(){
+
+    }
+
+    private void getLastPosition(){
+
     }
 }
