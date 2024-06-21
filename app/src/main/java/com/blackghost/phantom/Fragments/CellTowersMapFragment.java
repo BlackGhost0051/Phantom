@@ -54,7 +54,15 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
         View view = inflater.inflate(R.layout.fragment_cell_towers_map, container, false);
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        String startPosition = sharedPreferences.getString("start_position", "51.509865, -0.118092");
+
+        boolean savePositionBool = sharedPreferences.getBoolean("save_last_position_map", true);
+        String startPosition;
+
+        if(savePositionBool){
+            startPosition = getLastPosition();
+        } else {
+            startPosition = sharedPreferences.getString("start_position", "51.509865, -0.118092");
+        }
 
         String[] latLong = startPosition.split(",");
         double startLat;
@@ -245,10 +253,15 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
     }
 
     private void saveLastPosition(){
-
+        if (lastCenter != null) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("last_position", lastCenter.getLatitude() + "," + lastCenter.getLongitude());
+            editor.apply();
+        }
     }
 
-    private void getLastPosition(){
-
+    private String getLastPosition(){
+        String startPosition = sharedPreferences.getString("last_position", "51.509865, -0.118092");
+        return  startPosition;
     }
 }
