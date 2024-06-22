@@ -141,7 +141,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-
+        saveLastPosition();
         Log.d("onDestroyView","Destroy");
     }
 
