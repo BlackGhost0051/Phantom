@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">Phantom</string>
+    <string name="app_version">0.1</string>
+    <string name="gitHubUrl">https://github.com/BlackGhost0051</string>
+    <string name="gitHubRepoUrl">https://github.com/BlackGhost0051/Phantom</string>
 
     <string name="open">open</string>
     <string name="close">close</string>
-
-    <string name="app_version">0.1</string>
 
 
     <string name="start_position_title_preferences">Start position in map</string>

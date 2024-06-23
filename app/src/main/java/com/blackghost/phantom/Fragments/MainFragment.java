@@ -35,7 +35,7 @@ public class MainFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("https://github.com/BlackGhost0051"));
+                intent.setData(Uri.parse(getString(R.string.gitHubUrl)));
                 startActivity(intent);
             }
         });
