@@ -84,7 +84,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
 
         controller = mMap.getController();
 
-        controller.setZoom(10.0);
+        controller.setZoom(getLastZoom());
         controller.setCenter(new GeoPoint(startLat, startLon));
         RotationGestureOverlay rotationGestureOverlay = new RotationGestureOverlay(mMap);
         rotationGestureOverlay.setEnabled(true);
@@ -255,11 +255,18 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
         SharedPreferences.Editor editor = sharedPreferences.edit();
         GeoPoint center = (GeoPoint) mMap.getMapCenter();
         editor.putString("last_position", center.getLatitude() + "," + center.getLongitude());
+        editor.putString("last_zoom_level", String.valueOf(mMap.getZoomLevelDouble()));
         editor.apply();
+
     }
 
     private String getLastPosition(){
         String startPosition = sharedPreferences.getString("last_position", "51.509865, -0.118092");
         return  startPosition;
+    }
+
+    private double getLastZoom(){
+        double lastZoom = Double.parseDouble(sharedPreferences.getString("last_zoom_level", "10.0"));
+        return lastZoom;
     }
 }
