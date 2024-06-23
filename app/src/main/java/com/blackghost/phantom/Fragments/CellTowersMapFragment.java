@@ -142,7 +142,6 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
     public void onDestroyView() {
         super.onDestroyView();
         saveLastPosition();
-        Log.d("onDestroyView","Destroy");
     }
 
     private double calculateDistance(GeoPoint point1, GeoPoint point2){
@@ -253,11 +252,10 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
     }
 
     private void saveLastPosition(){
-        if (lastCenter != null) {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString("last_position", lastCenter.getLatitude() + "," + lastCenter.getLongitude());
-            editor.apply();
-        }
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        GeoPoint center = (GeoPoint) mMap.getMapCenter();
+        editor.putString("last_position", center.getLatitude() + "," + center.getLongitude());
+        editor.apply();
     }
 
     private String getLastPosition(){
