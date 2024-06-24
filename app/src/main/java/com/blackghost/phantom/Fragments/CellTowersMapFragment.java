@@ -96,7 +96,6 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                 double zoomLevel = mMap.getZoomLevelDouble();
 
                 if (zoomLevel > 16.0) {
-                    Log.d("ZOOM" , String.valueOf(zoomLevel));
                     int width = mMap.getWidth();
                     int height = mMap.getHeight();
 
@@ -104,8 +103,6 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
 
                     if(lastCenter != null){
                         double distance = calculateDistance(center,lastCenter);
-                        Log.d("distance", String.valueOf(distance));
-                        Log.d("Test dinamic distance", String.valueOf( 4.0 / zoomLevel));
                         if(distance >= 4.0 / zoomLevel) {
                             GeoPoint southWest = (GeoPoint) mMap.getProjection().fromPixels(0, height);
                             GeoPoint northEast = (GeoPoint) mMap.getProjection().fromPixels(width, 0);
@@ -116,7 +113,6 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                             double northEastLongitude = northEast.getLongitude();
 
                             String bbox = southWestLongitude + "," + southWestLatitude + "," + northEastLongitude + "," + northEastLatitude;
-                            Log.d("bbox", bbox);
                             cellTowersTask(bbox);
 
                             lastCenter = center;
@@ -158,8 +154,6 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
 
     @Override
     public void onTaskCompleted(JSONObject result) {
-        Log.d("JSON", result.toString());
-
         try {
             clearMarkers();
             JSONArray features = result.getJSONArray("features");
@@ -218,12 +212,6 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                         return true;
                     }
                 });
-
-                Log.d("Feature " + i, "Coordinates: [" + longitude + ", " + latitude + "]");
-                Log.d("Feature " + i, "Radio: " + radio + ", MCC: " + mcc + ", Net: " + net);
-                Log.d("Feature " + i, "Cell: " + cell + ", Area: " + area);
-                Log.d("Feature " + i, "Samples: " + samples + ", Range: " + range);
-                Log.d("Feature " + i, "Created: " + created + ", Updated: " + updated);
             }
         } catch (JSONException e) {
             Log.e("JSON", "Error parsing JSON"/*, e*/);
@@ -232,7 +220,6 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
 
     private void cellTowersTask(String bbox){
         String url = "https://opencellid.org/ajax/getCells.php?bbox=" + bbox;
-        Log.d("URL", url);
         CellTowerTask cellTowerTask = new CellTowerTask("https://opencellid.org/ajax/getCells.php?bbox=", this::onTaskCompleted);
         cellTowerTask.execute(bbox);
     }
