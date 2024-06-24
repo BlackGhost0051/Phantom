@@ -19,4 +19,6 @@
 
     <string name="cell_api_key_title_preferences">API Key</string>
     <string name="cell_api_key_summary_preferences">API Key</string>
+
+    <string name="city_search_hint">Enter ciy</string>
 </resources>
