@@ -38,6 +38,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
     private MapView mMap;
     private IMapController controller;
     private MyLocationNewOverlay mMyLocationOverlay;
+    private CompassOverlay compassOverlay;
     private GeoPoint lastCenter = null;
     private SharedPreferences sharedPreferences;
     public CellTowersMapFragment() {
@@ -86,6 +87,11 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
 
         controller.setZoom(getLastZoom());
         controller.setCenter(new GeoPoint(startLat, startLon));
+
+        compassOverlay = new CompassOverlay(getActivity(), mMap);
+        compassOverlay.enableCompass();
+        mMap.getOverlays().add(compassOverlay);
+
         RotationGestureOverlay rotationGestureOverlay = new RotationGestureOverlay(mMap);
         rotationGestureOverlay.setEnabled(true);
         mMap.getOverlayManager().add(rotationGestureOverlay);
@@ -121,7 +127,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                             lastCenter = center;
                     }
                 } else {
-                    clearMarkers();
+                    //clearMarkers();
                 }
                 return true;
             }
