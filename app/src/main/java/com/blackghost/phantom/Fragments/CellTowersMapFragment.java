@@ -43,7 +43,6 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
     private GeoPoint lastCenter = null;
     private SharedPreferences sharedPreferences;
     public CellTowersMapFragment() {
-        // Required empty public constructor
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -102,6 +101,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
             public boolean onScroll(ScrollEvent event) {
                 double zoomLevel = mMap.getZoomLevelDouble();
 
+                updateCompass();
                 if (zoomLevel > 16.0) {
                     int width = mMap.getWidth();
                     int height = mMap.getHeight();
@@ -262,5 +262,10 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
     private double getLastZoom(){
         double lastZoom = Double.parseDouble(sharedPreferences.getString("last_zoom_level", "10.0"));
         return lastZoom;
+    }
+
+    private void updateCompass(){
+        compassOverlay.setAzimuthOffset(-mMap.getMapOrientation());
+        mMap.invalidate();
     }
 }
