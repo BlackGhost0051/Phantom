@@ -38,6 +38,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
     private MapView mMap;
     private IMapController controller;
     private MyLocationNewOverlay mMyLocationOverlay;
+    private RotationGestureOverlay rotationGestureOverlay;
     private CompassOverlay compassOverlay;
     private GeoPoint lastCenter = null;
     private SharedPreferences sharedPreferences;
@@ -92,7 +93,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
         compassOverlay.enableCompass();
         mMap.getOverlays().add(compassOverlay);
 
-        RotationGestureOverlay rotationGestureOverlay = new RotationGestureOverlay(mMap);
+        rotationGestureOverlay = new RotationGestureOverlay(mMap);
         rotationGestureOverlay.setEnabled(true);
         mMap.getOverlayManager().add(rotationGestureOverlay);
 
