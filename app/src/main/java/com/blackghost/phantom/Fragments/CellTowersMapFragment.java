@@ -3,6 +3,7 @@ package com.blackghost.phantom.Fragments;
 import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
+import android.location.Address;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AutoCompleteTextView;
 
 import com.blackghost.phantom.Class.CellTowerTask;
 import com.blackghost.phantom.Interfaces.CellTowerInterface;
@@ -25,7 +27,6 @@ import org.osmdroid.config.Configuration;
 import org.osmdroid.events.MapListener;
 import org.osmdroid.events.ScrollEvent;
 import org.osmdroid.events.ZoomEvent;
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
 import org.osmdroid.views.MapView;
 import org.osmdroid.views.overlay.Marker;
@@ -42,6 +43,8 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
     private CompassOverlay compassOverlay;
     private GeoPoint lastCenter = null;
     private SharedPreferences sharedPreferences;
+
+    private AutoCompleteTextView citySearch;
     public CellTowersMapFragment() {
     }
     @Override
@@ -53,6 +56,12 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cell_towers_map, container, false);
+
+        citySearch = view.findViewById(R.id.city_search);
+        citySearch.setOnItemClickListener((parent, view1, position, id) -> {
+            String cityName = citySearch.getText().toString();
+            searchCity(cityName);
+        });
 
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
@@ -267,5 +276,9 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
     private void updateCompass(){
         compassOverlay.setAzimuthOffset(-mMap.getMapOrientation());
         mMap.invalidate();
+    }
+
+    private void searchCity(String cityName) {
+        Log.d("searchCity", cityName);
     }
 }
