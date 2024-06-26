@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <style name="PreferenceText" parent="Preference">
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>
