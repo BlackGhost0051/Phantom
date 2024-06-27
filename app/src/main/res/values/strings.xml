@@ -15,7 +15,7 @@
     <string name="save_last_position_map_title_preferences">Save the last position on the map</string>
 
     <string name="use_local_data_base_title_preferences">Use local database</string>
-    <string name="use_local_data_base_summary_preferences">Click to enable or disable passive cell tower scanning of the local database.</string>
+    <string name="use_local_data_base_summary_preferences">Passive cell tower scanning of the local database.</string>
 
     <string name="cell_api_key_title_preferences">API Key</string>
     <string name="cell_api_key_summary_preferences">API Key</string>

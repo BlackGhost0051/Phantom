@@ -134,7 +134,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
                             lastCenter = center;
                         }
                     } else {
-                            lastCenter = center;
+                        lastCenter = center;
                     }
                 } else {
                     //clearMarkers();
