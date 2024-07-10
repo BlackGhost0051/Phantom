@@ -20,7 +20,6 @@ public class PhoneStateManager extends BroadcastReceiver {
         if (TelephonyManager.EXTRA_STATE_RINGING.equals(state)) {
             String incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
             Log.d("PhoneStateReceiver", "Incoming call from: " + incomingNumber);
-            showNotification(context, "Incoming call from: " + incomingNumber);
         } else if (TelephonyManager.EXTRA_STATE_OFFHOOK.equals(state)) {
             // Call started
             Log.d("PhoneStateReceiver", "Call started");
@@ -30,9 +29,5 @@ public class PhoneStateManager extends BroadcastReceiver {
         } else {
             Log.d("PhoneStateReceiver", "Unknown state: " + state);
         }
-    }
-
-    private void showNotification(Context context, String message) {
-        Log.d("Notification", message);
     }
 }
