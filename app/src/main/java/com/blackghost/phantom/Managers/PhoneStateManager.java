@@ -8,8 +8,14 @@ import android.util.Log;
 import android.app.Notification;
 import android.app.NotificationManager;
 import androidx.core.app.NotificationCompat;
+
+import com.blackghost.phantom.Class.SearchCellTowerTask;
+import com.blackghost.phantom.Interfaces.SearchCellTowerInterface;
 import com.blackghost.phantom.R;
-public class PhoneStateManager extends BroadcastReceiver {
+
+import org.json.JSONObject;
+
+public class PhoneStateManager extends BroadcastReceiver implements SearchCellTowerInterface {
     @Override
     public void onReceive(Context context, Intent intent) {
         String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
@@ -34,5 +40,15 @@ public class PhoneStateManager extends BroadcastReceiver {
         } else {
             Log.d("PhoneStateReceiver", "Unknown state: " + state);
         }
+    }
+
+    private void searchCellTask(){
+        SearchCellTowerTask searchCellTowerTask = new SearchCellTowerTask("", this::onSearchTaskCompleted);
+        searchCellTowerTask.execute("");
+    }
+
+    @Override
+    public void onSearchTaskCompleted(JSONObject result) {
+
     }
 }
