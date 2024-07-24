@@ -27,6 +27,7 @@ public class PhoneStateManager extends BroadcastReceiver implements SearchCellTo
         // link to find cell tower in database
         // return lon lan | make GET box
         // in box find more info for tower
+        searchCellTask();
 
         if (TelephonyManager.EXTRA_STATE_RINGING.equals(state)) {
             String incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
@@ -42,13 +43,16 @@ public class PhoneStateManager extends BroadcastReceiver implements SearchCellTo
         }
     }
 
+    private String makeTask(String mcc, String mnc, String lac,String cell_id){
+        return "/ajax/searchCell.php?mcc=" + mcc + "&mnc=" + mnc +"&lac=" + lac + "&cell_id=" + cell_id;
+    }
     private void searchCellTask(){
-        SearchCellTowerTask searchCellTowerTask = new SearchCellTowerTask("", this::onSearchTaskCompleted);
-        searchCellTowerTask.execute("");
+        SearchCellTowerTask searchCellTowerTask = new SearchCellTowerTask("https://www.opencellid.org", this::onSearchTaskCompleted);
+        searchCellTowerTask.execute(makeTask("","","",""));
     }
 
     @Override
     public void onSearchTaskCompleted(JSONObject result) {
-
+        Log.d("SearchTask", String.valueOf(result));
     }
 }

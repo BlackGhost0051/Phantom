@@ -17,7 +17,7 @@ public class SearchCellTowerTask extends AsyncTask <String, Void , JSONObject> {
 
     @Override
     protected JSONObject doInBackground(String... params) {
-        String urlString = baseUrl ;
+        String urlString = baseUrl;
 
         return null;
     }
