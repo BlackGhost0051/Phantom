@@ -17,6 +17,9 @@ public class PhoneStateManager extends BroadcastReceiver {
             return;
         }
 
+        // https://www.opencellid.org/ajax/searchCell.php?mcc=310&mnc=120&lac=21264&cell_id=175545858
+        // link to find cell tower in database
+
         if (TelephonyManager.EXTRA_STATE_RINGING.equals(state)) {
             String incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
             Log.d("PhoneStateReceiver", "Incoming call from: " + incomingNumber);
