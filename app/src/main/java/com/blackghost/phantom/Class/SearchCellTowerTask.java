@@ -7,6 +7,8 @@ import com.blackghost.phantom.Interfaces.SearchCellTowerInterface;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -33,6 +35,18 @@ public class SearchCellTowerTask extends AsyncTask <String, Void , JSONObject> {
             httpURLConnection = (HttpURLConnection) url.openConnection();
             httpURLConnection.setRequestMethod("GET");
             httpURLConnection.connect();
+
+            InputStream inputStream = httpURLConnection.getInputStream();
+            StringBuilder buffer = new StringBuilder();
+            if (inputStream == null){
+                return null;
+            }
+
+            bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+            String line;
+            while((line = bufferedReader.readLine()) != null){
+                buffer.append(line).append("\n");
+            }
 
         } catch (Exception e){
 
