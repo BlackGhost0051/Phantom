@@ -3,7 +3,9 @@ package com.blackghost.phantom.Managers;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.telephony.TelephonyManager;
+import android.telephony.gsm.GsmCellLocation;
 import android.util.Log;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -27,7 +29,7 @@ public class PhoneStateManager extends BroadcastReceiver implements SearchCellTo
         // link to find cell tower in database
         // return lon lan | make GET box
         // in box find more info for tower
-        searchCellTask();
+        searchCellTask(context);
 
         if (TelephonyManager.EXTRA_STATE_RINGING.equals(state)) {
             String incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
@@ -46,9 +48,34 @@ public class PhoneStateManager extends BroadcastReceiver implements SearchCellTo
     private String makeTask(String mcc, String mnc, String lac,String cell_id){
         return "/ajax/searchCell.php?mcc=" + mcc + "&mnc=" + mnc +"&lac=" + lac + "&cell_id=" + cell_id;
     }
-    private void searchCellTask(){
+    private void searchCellTask(Context context){
+        TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+
+        if (telephonyManager == null) {
+            Log.e("PhoneStateManager", "TelephonyManager is null");
+            return;
+        }
+
+        if (androidx.core.content.ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Log.e("PhoneStateManager", "Location permission not granted");
+            return;
+        }
+
+        GsmCellLocation cellLocation = (GsmCellLocation) telephonyManager.getCellLocation();
+        if (cellLocation == null) {
+            Log.e("PhoneStateManager", "CellLocation is null");
+            return;
+        }
+
+        int cellId = cellLocation.getCid();
+        int lac = cellLocation.getLac();
+        String networkOperator = telephonyManager.getNetworkOperator();
+        int mcc = Integer.parseInt(networkOperator.substring(0, 3));
+        int mnc = Integer.parseInt(networkOperator.substring(3));
+
         SearchCellTowerTask searchCellTowerTask = new SearchCellTowerTask("https://www.opencellid.org", this::onSearchTaskCompleted);
-        searchCellTowerTask.execute(makeTask("","","",""));
+        Log.d("TASK", (makeTask(String.valueOf(mcc), String.valueOf(mnc), String.valueOf(lac), String.valueOf(cellId))));
+        searchCellTowerTask.execute(makeTask(String.valueOf(mcc), String.valueOf(mnc), String.valueOf(lac), String.valueOf(cellId)));
     }
 
     @Override
