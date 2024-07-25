@@ -9,6 +9,8 @@ import android.telephony.gsm.GsmCellLocation;
 import android.util.Log;
 import android.app.Notification;
 import android.app.NotificationManager;
+import android.widget.Toast;
+
 import androidx.core.app.NotificationCompat;
 
 import com.blackghost.phantom.Class.SearchCellTowerTask;
@@ -74,8 +76,11 @@ public class PhoneStateManager extends BroadcastReceiver implements SearchCellTo
         int mnc = Integer.parseInt(networkOperator.substring(3));
 
         SearchCellTowerTask searchCellTowerTask = new SearchCellTowerTask("https://www.opencellid.org", this::onSearchTaskCompleted);
-        Log.d("TASK", (makeTask(String.valueOf(mcc), String.valueOf(mnc), String.valueOf(lac), String.valueOf(cellId))));
-        searchCellTowerTask.execute(makeTask(String.valueOf(mcc), String.valueOf(mnc), String.valueOf(lac), String.valueOf(cellId)));
+        String Task = makeTask(String.valueOf(mcc), String.valueOf(mnc), String.valueOf(lac), String.valueOf(cellId));
+
+        Log.d("TASK", Task);
+        Toast.makeText(context, Task, Toast.LENGTH_LONG).show();
+        searchCellTowerTask.execute(Task);
     }
 
     @Override
