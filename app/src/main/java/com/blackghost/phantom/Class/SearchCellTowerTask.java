@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class SearchCellTowerTask extends AsyncTask <String, Void , JSONObject> {
     private final String baseUrl;
@@ -28,6 +29,10 @@ public class SearchCellTowerTask extends AsyncTask <String, Void , JSONObject> {
         String jsonResponse = "";
 
         try{
+            URL url = new URL(urlString);
+            httpURLConnection = (HttpURLConnection) url.openConnection();
+            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.connect();
 
         } catch (Exception e){
 
