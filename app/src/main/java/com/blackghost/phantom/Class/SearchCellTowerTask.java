@@ -6,6 +6,9 @@ import com.blackghost.phantom.Interfaces.SearchCellTowerInterface;
 
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.net.HttpURLConnection;
+
 public class SearchCellTowerTask extends AsyncTask <String, Void , JSONObject> {
     private final String baseUrl;
     private final OnTaskCompleted listener;
@@ -17,7 +20,18 @@ public class SearchCellTowerTask extends AsyncTask <String, Void , JSONObject> {
 
     @Override
     protected JSONObject doInBackground(String... params) {
-        String urlString = baseUrl;
+        String task = params[0];
+        String urlString = baseUrl + task;
+
+        HttpURLConnection httpURLConnection = null;
+        BufferedReader bufferedReader = null;
+        String jsonResponse = "";
+
+        try{
+
+        } catch (Exception e){
+
+        }
 
         return null;
     }
