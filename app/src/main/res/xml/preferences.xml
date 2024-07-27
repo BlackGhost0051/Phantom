@@ -34,6 +34,8 @@
             />
         <SeekBarPreference
             android:key="auto_start"
+            android:title=""
+            android:summary=""
             android:defaultValue="true"
             />
     </PreferenceCategory>
