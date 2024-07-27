@@ -32,6 +32,10 @@
             android:inputType="text"
             android:defaultValue=""
             />
+        <SeekBarPreference
+            android:key="auto_start"
+            android:defaultValue="true"
+            />
     </PreferenceCategory>
 
 </PreferenceScreen>
