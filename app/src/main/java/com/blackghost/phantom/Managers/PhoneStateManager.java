@@ -28,7 +28,7 @@ public class PhoneStateManager extends BroadcastReceiver implements SearchCellTo
         }
 
         // https://www.opencellid.org/ajax/searchCell.php?mcc=310&mnc=120&lac=21264&cell_id=175545858
-        // link to find cell tower in database
+
         // return lon lan | make GET box
         // in box find more info for tower
         searchCellTask(context);

@@ -1,12 +1,15 @@
 package com.blackghost.phantom.Class;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.blackghost.phantom.Interfaces.SearchCellTowerInterface;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -48,8 +51,31 @@ public class SearchCellTowerTask extends AsyncTask <String, Void , JSONObject> {
                 buffer.append(line).append("\n");
             }
 
-        } catch (Exception e){
+            if( buffer.length() == 0){
+                return null;
+            }
 
+            jsonResponse = buffer.toString();
+        } catch (Exception e){
+            Log.e("SearchCellTowerTask","Error", e);
+            return null;
+        } finally {
+            if (httpURLConnection != null){
+                httpURLConnection.disconnect();
+            }
+            if( bufferedReader != null){
+                try{
+                    bufferedReader.close();
+                } catch (final IOException e){
+                    Log.e("SearchCellTowerTask", "Error closing stream", e);
+                }
+            }
+        }
+
+        try {
+            return new JSONObject(jsonResponse);
+        } catch (JSONException e) {
+            Log.e("SearchCellTowerTask", "Error parsing JSON", e);
         }
 
         return null;
