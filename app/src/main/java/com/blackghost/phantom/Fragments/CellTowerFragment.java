@@ -62,25 +62,31 @@ public class CellTowerFragment extends Fragment {
                         for (CellInfo cellInfo : cellInfoList) {
                             if (cellInfo instanceof CellInfoGsm) {
                                 CellIdentityGsm cellIdentity = ((CellInfoGsm) cellInfo).getCellIdentity();
+                                int signalStrength = ((CellInfoGsm) cellInfo).getCellSignalStrength().getDbm();
                                 info.append("Radio: GSM\n")
                                         .append("MCC: ").append(cellIdentity.getMcc()).append("\n")
                                         .append("Net: ").append(cellIdentity.getMnc()).append("\n")
                                         .append("Cell: ").append(cellIdentity.getCid()).append("\n")
-                                        .append("Area: ").append(cellIdentity.getLac()).append("\n\n");
+                                        .append("Area: ").append(cellIdentity.getLac()).append("\n")
+                                        .append("Signal Strength: ").append(signalStrength).append(" dBm\n\n");
                             } else if (cellInfo instanceof CellInfoLte) {
                                 CellIdentityLte cellIdentity = ((CellInfoLte) cellInfo).getCellIdentity();
+                                int signalStrength = ((CellInfoLte) cellInfo).getCellSignalStrength().getDbm();
                                 info.append("Radio: LTE\n")
                                         .append("MCC: ").append(cellIdentity.getMcc()).append("\n")
                                         .append("Net: ").append(cellIdentity.getMnc()).append("\n")
                                         .append("Cell: ").append(cellIdentity.getCi()).append("\n")
-                                        .append("Area: ").append(cellIdentity.getTac()).append("\n\n");
+                                        .append("Area: ").append(cellIdentity.getTac()).append("\n")
+                                        .append("Signal Strength: ").append(signalStrength).append(" dBm\n\n");
                             } else if (cellInfo instanceof CellInfoWcdma) {
                                 CellIdentityWcdma cellIdentity = ((CellInfoWcdma) cellInfo).getCellIdentity();
+                                int signalStrength = ((CellInfoWcdma) cellInfo).getCellSignalStrength().getDbm();
                                 info.append("Radio: WCDMA\n")
                                         .append("MCC: ").append(cellIdentity.getMcc()).append("\n")
                                         .append("Net: ").append(cellIdentity.getMnc()).append("\n")
                                         .append("Cell: ").append(cellIdentity.getCid()).append("\n")
-                                        .append("Area: ").append(cellIdentity.getLac()).append("\n\n");
+                                        .append("Area: ").append(cellIdentity.getLac()).append("\n")
+                                        .append("Signal Strength: ").append(signalStrength).append(" dBm\n\n");
                             }
                         }
                         return info.toString();
