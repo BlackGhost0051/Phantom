@@ -58,19 +58,19 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 if (item.getItemId() == R.id.cell_towers_map) {
                     drawerLayout.closeDrawer(GravityCompat.START);
-                    toolbar.setTitle("Cell Towers Map");
+                    toolbar.setTitle(R.string.toolbar_cell_towers_map);
                     fragmentR(new CellTowersMapFragment());
                     return true;
                 }
                 if (item.getItemId() == R.id.cell_tower) {
                     drawerLayout.closeDrawer(GravityCompat.START);
-                    toolbar.setTitle("Cell Tower");
+                    toolbar.setTitle(R.string.toolbar_cell_tower);
                     fragmentR(new CellTowerFragment());
                     return true;
                 }
                 if (item.getItemId() == R.id.settings) {
                     drawerLayout.closeDrawer(GravityCompat.START);
-                    toolbar.setTitle("Settings");
+                    toolbar.setTitle(R.string.toolbar_settings);
                     fragmentR(new SettingsFragment());
                     return true;
                 }
