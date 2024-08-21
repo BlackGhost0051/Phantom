@@ -17,11 +17,16 @@
             android:title="Cell Tower"
             />
 
-        <item
-            android:id="@+id/settings"
-            android:icon="@drawable/baseline_settings_24"
-            android:title="Settings"
-            />
+        <item android:title="App">
+            <menu>
+                <item
+                    android:id="@+id/settings"
+                    android:icon="@drawable/baseline_settings_24"
+                    android:title="Settings"
+                    />
+            </menu>
+        </item>
+
     </group>
 
 </menu>
