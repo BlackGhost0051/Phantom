@@ -26,9 +26,14 @@ import com.blackghost.phantom.R;
 
 import java.util.List;
 
+import android.os.Handler;
+
+
 public class CellTowerFragment extends Fragment {
 
     TextView info_cell_tower;
+    private Handler handler = new Handler();
+    private Runnable runnable;
 
     public CellTowerFragment() {
         // Required empty public constructor
@@ -45,7 +50,15 @@ public class CellTowerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cell_tower, container, false);
 
         info_cell_tower = view.findViewById(R.id.info_cell_tower);
-        info_cell_tower.setText(getCellTowerInfo());
+
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                info_cell_tower.setText(getCellTowerInfo());
+                handler.postDelayed(this, 5000);
+            }
+        };
+        handler.post(runnable);
 
         return view;
     }
