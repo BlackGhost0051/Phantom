@@ -24,7 +24,10 @@ import android.widget.TextView;
 
 import com.blackghost.phantom.R;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import android.os.Handler;
 
@@ -71,40 +74,46 @@ public class CellTowerFragment extends Fragment {
                 try {
                     List<CellInfo> cellInfoList = telephonyManager.getAllCellInfo();
                     if (cellInfoList != null && !cellInfoList.isEmpty()) {
-                        StringBuilder info = new StringBuilder();
+                        String info = "";
+
+                        SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
+                        String currentTime = sdf.format(new Date());
+
                         for (CellInfo cellInfo : cellInfoList) {
                             if (cellInfo instanceof CellInfoGsm) {
                                 CellIdentityGsm cellIdentity = ((CellInfoGsm) cellInfo).getCellIdentity();
                                 int signalStrength = ((CellInfoGsm) cellInfo).getCellSignalStrength().getDbm();
-                                info.append("Radio: GSM\n")
-                                        .append("MCC: ").append(cellIdentity.getMcc()).append("\n")
-                                        .append("Net: ").append(cellIdentity.getMnc()).append("\n")
-                                        .append("Cell: ").append(cellIdentity.getCid()).append("\n")
-                                        .append("Area: ").append(cellIdentity.getLac()).append("\n")
-                                        .append("Signal Strength: ").append(signalStrength).append(" dBm\n\n");
+                                info += "Radio: GSM\n" +
+                                        "MCC: " + cellIdentity.getMcc() + "\n" +
+                                        "Net: " + cellIdentity.getMnc() + "\n" +
+                                        "Cell: " + cellIdentity.getCid() + "\n" +
+                                        "Area: " + cellIdentity.getLac() + "\n" +
+                                        "Signal Strength: " + signalStrength + " dBm\n" +
+                                        "Update Time: " + currentTime + "\n\n";
                             } else if (cellInfo instanceof CellInfoLte) {
                                 CellIdentityLte cellIdentity = ((CellInfoLte) cellInfo).getCellIdentity();
                                 int signalStrength = ((CellInfoLte) cellInfo).getCellSignalStrength().getDbm();
-                                info.append("Radio: LTE\n")
-                                        .append("MCC: ").append(cellIdentity.getMcc()).append("\n")
-                                        .append("Net: ").append(cellIdentity.getMnc()).append("\n")
-                                        .append("Cell: ").append(cellIdentity.getCi()).append("\n")
-                                        .append("Area: ").append(cellIdentity.getTac()).append("\n")
-                                        .append("Signal Strength: ").append(signalStrength).append(" dBm\n\n");
+                                info += "Radio: LTE\n" +
+                                        "MCC: " + cellIdentity.getMcc() + "\n" +
+                                        "Net: " + cellIdentity.getMnc() + "\n" +
+                                        "Cell: " + cellIdentity.getCi() + "\n" +
+                                        "Area: " + cellIdentity.getTac() + "\n" +
+                                        "Signal Strength: " + signalStrength + " dBm\n" +
+                                        "Update Time: " + currentTime + "\n\n";
                             } else if (cellInfo instanceof CellInfoWcdma) {
                                 CellIdentityWcdma cellIdentity = ((CellInfoWcdma) cellInfo).getCellIdentity();
                                 int signalStrength = ((CellInfoWcdma) cellInfo).getCellSignalStrength().getDbm();
-                                info.append("Radio: WCDMA\n")
-                                        .append("MCC: ").append(cellIdentity.getMcc()).append("\n")
-                                        .append("Net: ").append(cellIdentity.getMnc()).append("\n")
-                                        .append("Cell: ").append(cellIdentity.getCid()).append("\n")
-                                        .append("Area: ").append(cellIdentity.getLac()).append("\n")
-                                        .append("Signal Strength: ").append(signalStrength).append(" dBm\n\n");
+                                info += "Radio: WCDMA\n" +
+                                        "MCC: " + cellIdentity.getMcc() + "\n" +
+                                        "Net: " + cellIdentity.getMnc() + "\n" +
+                                        "Cell: " + cellIdentity.getCid() + "\n" +
+                                        "Area: " + cellIdentity.getLac() + "\n" +
+                                        "Signal Strength: " + signalStrength + " dBm\n" +
+                                        "Update Time: " + currentTime + "\n\n";
                             }
                         }
-                        return info.toString();
+                        return info;
                     } else {
-                        Log.d("PHON", "No cell info available");
                         return "No cell info available";
                     }
                 } catch (SecurityException e) {
@@ -112,11 +121,9 @@ public class CellTowerFragment extends Fragment {
                     return "Permission denied for accessing cell info.";
                 }
             } else {
-                Log.d("PHON", "Permission not granted");
                 return "Permission not granted";
             }
         } else {
-            Log.d("PHON", "TelephonyManager is null");
             return "TelephonyManager is null";
         }
     }
