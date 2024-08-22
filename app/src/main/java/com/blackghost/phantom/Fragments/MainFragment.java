@@ -14,7 +14,7 @@ import android.widget.Button;
 import com.blackghost.phantom.R;
 
 public class MainFragment extends Fragment {
-    Button githubBtn;
+    private Button githubBtn;
     public MainFragment() {
         // Required empty public constructor
     }
