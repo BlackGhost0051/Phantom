@@ -20,6 +20,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.blackghost.phantom.R;
@@ -34,7 +35,10 @@ import android.os.Handler;
 
 public class CellTowerFragment extends Fragment {
 
-    TextView info_cell_tower;
+    private TextView info_cell_tower;
+    private ImageView security_status_imageView;
+    private TextView security_status_textView;
+
     private Handler handler = new Handler();
     private Runnable runnable;
 
@@ -53,6 +57,14 @@ public class CellTowerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_cell_tower, container, false);
 
         info_cell_tower = view.findViewById(R.id.info_cell_tower);
+        security_status_imageView = view.findViewById(R.id.security_status_imageView);
+        security_status_textView = view.findViewById(R.id.security_status_textView);
+
+
+        security_status_imageView.setImageResource(R.drawable.ic_launcher_background);
+        security_status_textView.setText("STATUS");
+
+
 
         runnable = new Runnable() {
             @Override
