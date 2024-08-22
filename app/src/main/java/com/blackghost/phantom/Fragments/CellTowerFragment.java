@@ -64,16 +64,17 @@ public class CellTowerFragment extends Fragment {
         security_status_imageView.setImageResource(R.drawable.ic_launcher_background);
         security_status_textView.setText("STATUS");
 
+        info_cell_tower.setText(getCellTowerInfo());
 
-
-        runnable = new Runnable() {
+        /*
+        runnable = new Runnable() {   // CRASH
             @Override
             public void run() {
                 info_cell_tower.setText(getCellTowerInfo());
                 handler.postDelayed(this, 5000);
             }
         };
-        handler.post(runnable);
+        handler.post(runnable);*/
 
         return view;
     }
