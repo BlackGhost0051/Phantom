@@ -52,6 +52,12 @@ public class CellTowerFragment extends Fragment {
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(runnable);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cell_tower, container, false);
@@ -64,9 +70,8 @@ public class CellTowerFragment extends Fragment {
         security_status_imageView.setImageResource(R.drawable.ic_launcher_background);
         security_status_textView.setText("STATUS");
 
-        info_cell_tower.setText(getCellTowerInfo());
 
-        /*
+
         runnable = new Runnable() {   // CRASH
             @Override
             public void run() {
@@ -74,7 +79,7 @@ public class CellTowerFragment extends Fragment {
                 handler.postDelayed(this, 5000);
             }
         };
-        handler.post(runnable);*/
+        handler.post(runnable);
 
         return view;
     }
