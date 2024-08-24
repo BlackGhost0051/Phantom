@@ -17,10 +17,12 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:id="@+id/githubBtn"
+        style="@style/button_style"
+        android:text="GitHub"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GitHub"
-        android:id="@+id/githubBtn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
