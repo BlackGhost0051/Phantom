@@ -10,7 +10,7 @@
 
     <style name="button_style">
         <item name="android:textColor">@color/black</item>
-        <item name="backgroundTint">@color/white</item>
+        <item name="android:background">@drawable/black_border</item>
     </style>
 
     <style name="status_text_style">
