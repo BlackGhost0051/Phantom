@@ -10,6 +10,7 @@
 
 ### Cell Towers Map
 ### Cell Tower
+### Settings
 
 Status : `Development`
 
