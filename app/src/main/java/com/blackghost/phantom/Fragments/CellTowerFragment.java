@@ -132,7 +132,7 @@ public class CellTowerFragment extends Fragment {
                         }
                         return info;
                     } else {
-                        return "No cell info available";
+                        return "No cell info available"; // Android 11 error
                     }
                 } catch (SecurityException e) {
                     Log.d("PHON", "SecurityException: " + e.getMessage());
