@@ -72,7 +72,7 @@ public class CellTowerFragment extends Fragment {
 
 
 
-        runnable = new Runnable() {   // CRASH
+        runnable = new Runnable() {
             @Override
             public void run() {
                 info_cell_tower.setText(getCellTowerInfo());
