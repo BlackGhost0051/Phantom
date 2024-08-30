@@ -92,6 +92,9 @@ public class CellTowerFragment extends Fragment {
                 try {
                     List<CellInfo> cellInfoList = telephonyManager.getAllCellInfo();
                     if (cellInfoList != null && !cellInfoList.isEmpty()) {
+
+                        Log.d("TEST", cellInfoList.toString());
+
                         String info = "";
 
                         SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss", Locale.getDefault());
