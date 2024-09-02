@@ -23,6 +23,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blackghost.phantom.Class.CellTowerTask;
+import com.blackghost.phantom.Interfaces.CellTowerInterface;
 import com.blackghost.phantom.R;
 
 import java.text.SimpleDateFormat;
@@ -32,8 +34,10 @@ import java.util.Locale;
 
 import android.os.Handler;
 
+import org.json.JSONObject;
 
-public class CellTowerFragment extends Fragment {
+
+public class CellTowerFragment extends Fragment implements CellTowerInterface {
 
     private TextView info_cell_tower;
     private ImageView security_status_imageView;
@@ -148,6 +152,17 @@ public class CellTowerFragment extends Fragment {
         } else {
             return "TelephonyManager is null";
         }
+    }
+
+    private void cellTowersTask(String bbox){
+        String url = "https://opencellid.org/ajax/getCells.php?bbox=" + bbox;
+        CellTowerTask cellTowerTask = new CellTowerTask("https://opencellid.org/ajax/getCells.php?bbox=", this::onTaskCompleted);
+        cellTowerTask.execute(bbox);
+    }
+
+    @Override
+    public void onTaskCompleted(JSONObject result) {
+
     }
 
     @Override
