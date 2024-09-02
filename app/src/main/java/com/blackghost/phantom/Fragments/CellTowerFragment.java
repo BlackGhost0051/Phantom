@@ -69,8 +69,9 @@ public class CellTowerFragment extends Fragment {
 
         security_status_imageView.setImageResource(R.drawable.ic_launcher_background);
         security_status_textView.setText("STATUS");
-
-
+        //  Listening | Not exist in base
+        //  Recently created | Exist in base < 8 month
+        //  Created a long time | Exist in base > 8 month
 
         runnable = new Runnable() {
             @Override
