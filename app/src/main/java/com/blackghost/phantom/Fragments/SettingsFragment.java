@@ -17,7 +17,6 @@ public class SettingsFragment extends PreferenceFragmentCompat {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // Apply the custom theme to this fragment
         getContext().getTheme().applyStyle(R.style.PreferenceScreen, true);
     }
 }
