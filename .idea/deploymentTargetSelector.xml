@@ -4,7 +4,7 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-09-04T01:18:42.495113803Z">
+        <DropdownSelection timestamp="2024-09-04T17:45:33.503919456Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=/home/kali/.config/.android/avd/API_24.avd" />
