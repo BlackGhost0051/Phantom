@@ -13,13 +13,16 @@ import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 
+import com.blackghost.phantom.Class.CellTowerTask;
 import com.blackghost.phantom.Class.SearchCellTowerTask;
+import com.blackghost.phantom.Interfaces.CellTowerInterface;
 import com.blackghost.phantom.Interfaces.SearchCellTowerInterface;
 import com.blackghost.phantom.R;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
-public class PhoneStateManager extends BroadcastReceiver implements SearchCellTowerInterface {
+public class PhoneStateManager extends BroadcastReceiver implements SearchCellTowerInterface, CellTowerInterface {
     @Override
     public void onReceive(Context context, Intent intent) {
         String state = intent.getStringExtra(TelephonyManager.EXTRA_STATE);
@@ -86,5 +89,41 @@ public class PhoneStateManager extends BroadcastReceiver implements SearchCellTo
     @Override
     public void onSearchTaskCompleted(JSONObject result) {
         Log.d("SearchTask", String.valueOf(result));
+
+        try {
+            String lon = result.get("lon").toString();
+            String lat = result.get("lat").toString();
+
+
+            float lonF = (float) (Float.parseFloat(lon) - 0.0001);
+            float latF = (float) (Float.parseFloat(lat) - 0.0001);
+
+            float lonS = (float) (Float.parseFloat(lon) + 0.0001);
+            float latS = (float) (Float.parseFloat(lat) + 0.0001);
+
+            // -122.084 37.421997
+            String bbox = String.valueOf(lonF) + "," + String.valueOf(latF) + "," + String.valueOf(lonS) + "," + String.valueOf(latS);
+            Log.d("BOX",bbox);
+            // https://opencellid.org/ajax/getCells.php?
+            // bbox=-122.0841,37.421898,-122.0839,37.422096
+
+            cellTowersTask(bbox);
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
+
+    private void cellTowersTask(String bbox){
+        String url = "https://opencellid.org/ajax/getCells.php?bbox=" + bbox;
+        Log.d("URL", url);
+        CellTowerTask cellTowerTask = new CellTowerTask("https://opencellid.org/ajax/getCells.php?bbox=", this::onTaskCompleted);
+        cellTowerTask.execute(bbox);
+    }
+    @Override
+    public void onTaskCompleted(JSONObject result) {
+        Log.d("TASK", result.toString());
     }
 }

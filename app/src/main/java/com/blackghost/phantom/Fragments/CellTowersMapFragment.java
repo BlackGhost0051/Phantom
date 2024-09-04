@@ -236,6 +236,7 @@ public class CellTowersMapFragment extends Fragment implements CellTowerInterfac
 
     private void cellTowersTask(String bbox){
         String url = "https://opencellid.org/ajax/getCells.php?bbox=" + bbox;
+        Log.d("URL", url);
         CellTowerTask cellTowerTask = new CellTowerTask("https://opencellid.org/ajax/getCells.php?bbox=", this::onTaskCompleted);
         cellTowerTask.execute(bbox);
     }
