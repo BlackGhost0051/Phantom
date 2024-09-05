@@ -140,7 +140,7 @@ public class CellTowerFragment extends Fragment implements CellTowerInterface {
                         }
                         return info;
                     } else {
-                        return "No cell info available"; // Android 11 error | NEED on geolocation
+                        return "No cell info available. Try ON Location!!!"; // Android 11 error | NEED on geolocation
                     }
                 } catch (SecurityException e) {
                     Log.d("PHON", "SecurityException: " + e.getMessage());
