@@ -3,13 +3,16 @@
 ![](./app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp "Phantom")
 
 # Content
-- Documentation
-- Fragments
-- Cell Towers Map
-- Cell Tower
-- Settings
+- [Documentation](#documentation)
+  - [Structure](#structure)
+  - [Fragments](#fragments)
+    - [Cell Towers Map](#cell-towers-map)
+    - [Cell Tower](#cell-tower)
+    - [Settings](#settings)
 
 # Documentation
+
+## Structure
 
 ## Fragments
 
