@@ -28,4 +28,6 @@ Development:
 ### Cell Tower
 ### Settings
 
+The `SettingsFragment` is a preference-based fragment that enables users to configure app settings related to map behavior and UI preferences.
+
 Status : `Development`
