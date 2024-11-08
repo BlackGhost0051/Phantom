@@ -25,7 +25,13 @@ Development:
 ## Fragments
 
 ### Cell Towers Map
+
+The `CellTowersMapFragment` displays an interactive map, allowing users to view and interact with cell tower markers. It integrates OpenStreetMap for map functionality and displays real-time cell tower data.
+
 ### Cell Tower
+
+The `CellTowerFragment` is responsible for displaying details about a specific cell tower, including its ID, signal strength, operator, and additional information. This fragment retrieves cell tower details using the `TelephonyManager`.
+
 ### Settings
 
 The `SettingsFragment` is a preference-based fragment that enables users to configure app settings related to map behavior and UI preferences.
