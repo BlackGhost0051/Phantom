@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         View header = navigationView.getHeaderView(0);
         app_version_TextView = header.findViewById(R.id.app_version);
-        app_version_TextView.setText("v1.0"/*BuildConfig.VERSION_NAME*/);
+        app_version_TextView.setText(BuildConfig.VERSION_NAME);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
