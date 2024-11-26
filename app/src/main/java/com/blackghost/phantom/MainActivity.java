@@ -18,8 +18,9 @@ import android.content.Context;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.blackghost.phantom.Fragments.CellTowerFragment;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     NavigationView navigationView;
     private BroadcastReceiver phoneStateReceiver;
+    private TextView app_version_TextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
         toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.black));
 
         fragmentR(new MainFragment());
+
+        View header = navigationView.getHeaderView(0);
+        app_version_TextView = header.findViewById(R.id.app_version);
+        app_version_TextView.setText("v1.0"/*BuildConfig.VERSION_NAME*/);
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
