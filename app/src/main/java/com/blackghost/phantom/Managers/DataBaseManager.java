@@ -9,16 +9,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DataBaseManager {
+    /*
+    * MAKE .csv
+    GSM,	260,2, 	58703,	48771,	0, 	    21.624526977539,	51.449661254883, 	1000,	1,	    1,1451225006,1451225006,0
+    type, 	mcc, 	mnc, 	lac, 	cell_id	lan     			lon			        range	samples
+    * */
+
+
+
+    private final String DATABASE_NAME = "my.db";
+
     private Context context;
     private List<String> databaseNames;
 
     public DataBaseManager(Context context) {
         this.context = context;
+        initDataBase();
     }
 
-    public boolean createDatabase(String databaseName) {
+
+    private void initDataBase(){
+        createDatabase();
+    }
+
+    public boolean createDatabase() {
         try {
-            String dbPath = context.getFilesDir().getPath() + File.separator + "databases" + File.separator + databaseName;
+            String dbPath = context.getFilesDir().getPath() + File.separator + "databases" + File.separator + DATABASE_NAME;
             File dbFile = new File(dbPath);
 
             if (dbFile.exists()) {
