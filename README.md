@@ -21,8 +21,13 @@ Development:
 # Documentation
 
 ## Structure
+
 ### Cell tower info
+```
+    type, 	mcc, 	mnc, 	lac, 	cell_id	lan     			lon			        range	samples
+```
 ### Cell tower database
+
 ## Fragments
 
 ### Cell Towers Map
