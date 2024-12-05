@@ -21,7 +21,8 @@ Development:
 # Documentation
 
 ## Structure
-
+### Cell tower info
+### Cell tower database
 ## Fragments
 
 ### Cell Towers Map
