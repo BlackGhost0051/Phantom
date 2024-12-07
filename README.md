@@ -32,6 +32,8 @@ Development:
 SVG
 
 # data manager | online connect and update data base | need API key !!!
+# Afk chaker
+# Mod settings
 ```
 
 ## Fragments
