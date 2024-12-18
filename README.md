@@ -23,18 +23,18 @@ Development:
 ## Structure
 
 ```
-[CellTowerTask.java](app%2Fsrc%2Fmain%2Fjava%2Fcom%2Fblackghost%2Fphantom%2FClass%2FCellTowerTask.java)
-[SearchCellTowerTask.java](app%2Fsrc%2Fmain%2Fjava%2Fcom%2Fblackghost%2Fphantom%2FClass%2FSearchCellTowerTask.java)
-[CellTowerFragment.java](app%2Fsrc%2Fmain%2Fjava%2Fcom%2Fblackghost%2Fphantom%2FFragments%2FCellTowerFragment.java)
-[CellTowersMapFragment.java](app%2Fsrc%2Fmain%2Fjava%2Fcom%2Fblackghost%2Fphantom%2FFragments%2FCellTowersMapFragment.java)
-[MainFragment.java](app%2Fsrc%2Fmain%2Fjava%2Fcom%2Fblackghost%2Fphantom%2FFragments%2FMainFragment.java)
-[SettingsFragment.java](app%2Fsrc%2Fmain%2Fjava%2Fcom%2Fblackghost%2Fphantom%2FFragments%2FSettingsFragment.java)
-[CellTowerInterface.java](app%2Fsrc%2Fmain%2Fjava%2Fcom%2Fblackghost%2Fphantom%2FInterfaces%2FCellTowerInterface.java)
-[SearchCellTowerInterface.java](app%2Fsrc%2Fmain%2Fjava%2Fcom%2Fblackghost%2Fphantom%2FInterfaces%2FSearchCellTowerInterface.java)
-[DataBaseManager.java](app%2Fsrc%2Fmain%2Fjava%2Fcom%2Fblackghost%2Fphantom%2FManagers%2FDataBaseManager.java)
-[PhoneStateManager.java](app%2Fsrc%2Fmain%2Fjava%2Fcom%2Fblackghost%2Fphantom%2FManagers%2FPhoneStateManager.java)
-[SettingsManager.java](app%2Fsrc%2Fmain%2Fjava%2Fcom%2Fblackghost%2Fphantom%2FManagers%2FSettingsManager.java)
-[MainActivity.java](app%2Fsrc%2Fmain%2Fjava%2Fcom%2Fblackghost%2Fphantom%2FMainActivity.java)
+CellTowerTask.java
+SearchCellTowerTask.java
+CellTowerFragment.java
+CellTowersMapFragment.java
+MainFragment.java
+SettingsFragment.java
+CellTowerInterface.java
+SearchCellTowerInterface.java
+DataBaseManager.java
+PhoneStateManager.java
+SettingsManager.java
+MainActivity.java
 ```
 
 ### Cell tower info
