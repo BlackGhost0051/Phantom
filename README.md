@@ -35,6 +35,14 @@ DataBaseManager.java
 PhoneStateManager.java
 SettingsManager.java
 MainActivity.java
+
+activity_main.xml
+fragment_cell_tower.xml
+fragment_cell_towers_map.xml
+fragment_main.xml
+header.xml
+
+menu_bar.xml
 ```
 
 ### Cell tower info
