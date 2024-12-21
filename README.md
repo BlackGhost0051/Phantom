@@ -36,6 +36,18 @@ PhoneStateManager.java
 SettingsManager.java
 MainActivity.java
 
+
+baseline_map_24.xml
+baseline_settings_24.xml
+black_border.xml
+gsm_icon.xml
+ic_launcher_background.xml
+ic_launcher_foreground.xml
+lte_icon.xml
+save_24.xml
+umts_icon.xml
+
+
 activity_main.xml
 fragment_cell_tower.xml
 fragment_cell_towers_map.xml
