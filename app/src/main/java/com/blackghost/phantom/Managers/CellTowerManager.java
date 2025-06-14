@@ -9,6 +9,27 @@ import org.json.JSONObject;
 
 public class CellTowerManager implements CellTowerInterface {
 
+    public void getCellIdInfo(){
+
+    }
+
+
+
+    private void getInfoFromAPI(){
+
+    }
+    private void getInfoFromTask(){
+
+    }
+    private void getInfoFromCsv(){
+
+    }
+
+
+
+
+
+
     private void cellTowersTask(String bbox){
         String url = "https://opencellid.org/ajax/getCells.php?bbox=" + bbox;
         Log.d("URL", url);
