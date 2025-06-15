@@ -1,5 +1,6 @@
 package com.blackghost.phantom.Managers;
 
+import android.app.NotificationChannel;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -37,6 +38,29 @@ public class PhoneStateManager extends BroadcastReceiver implements SearchCellTo
         searchCellTask(context);
 
         if (TelephonyManager.EXTRA_STATE_RINGING.equals(state)) {
+
+
+            TelephonyManager telephonyManager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            if (androidx.core.content.ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                return;
+            }
+
+            GsmCellLocation cellLocation = (GsmCellLocation) telephonyManager.getCellLocation();
+            if (cellLocation != null) {
+                int cellId = cellLocation.getCid();
+                int lac = cellLocation.getLac();
+                String networkOperator = telephonyManager.getNetworkOperator();
+                int mcc = Integer.parseInt(networkOperator.substring(0, 3));
+                int mnc = Integer.parseInt(networkOperator.substring(3));
+
+                String message = "CellID: " + cellId + ", LAC: " + lac + ", MCC: " + mcc + ", MNC: " + mnc;
+                showNotification(context, "Call Started", message);
+            }
+
+
+
+
+
             String incomingNumber = intent.getStringExtra(TelephonyManager.EXTRA_INCOMING_NUMBER);
             Log.d("PhoneStateReceiver", "Incoming call from: " + incomingNumber);
         } else if (TelephonyManager.EXTRA_STATE_OFFHOOK.equals(state)) {
@@ -126,4 +150,26 @@ public class PhoneStateManager extends BroadcastReceiver implements SearchCellTo
     public void onTaskCompleted(JSONObject result) {
         Log.d("TASK", result.toString());
     }
+
+
+
+    private void showNotification(Context context, String title, String message) {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "phantom_channel")
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentTitle(title)
+                .setContentText(message)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true);
+
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+
+        // For Android 8+ (Oreo) create notification channel
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel("phantom_channel", "Phantom Notifications", NotificationManager.IMPORTANCE_HIGH);
+            notificationManager.createNotificationChannel(channel);
+        }
+
+        notificationManager.notify(1, builder.build());
+    }
+
 }
