@@ -7,10 +7,11 @@
     <string name="open">open</string>
     <string name="close">close</string>
 
-    <!-- Toolbar -->
-    <string name="toolbar_cell_towers_map">Cell Towers Map</string>
-    <string name="toolbar_cell_tower">Cell Tower</string>
-    <string name="toolbar_settings">Settings</string>
+
+    <string name="nav_home">Home</string>
+    <string name="nav_cell_towers_map">Cell Towers Map</string>
+    <string name="nav_cell_tower">Cell Tower</string>
+    <string name="nav_settings">Settings</string>
 
 
     <string name="start_position_title_preferences">Start position in map</string>

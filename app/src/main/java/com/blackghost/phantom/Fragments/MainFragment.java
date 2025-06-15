@@ -14,9 +14,7 @@ import android.widget.Button;
 import com.blackghost.phantom.R;
 
 public class MainFragment extends Fragment {
-    private Button githubBtn;
     public MainFragment() {
-        // Required empty public constructor
     }
 
     @Override
@@ -28,17 +26,6 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-
-        githubBtn = view.findViewById(R.id.githubBtn);
-
-        githubBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(getString(R.string.gitHubUrl)));
-                startActivity(intent);
-            }
-        });
 
         return view;
     }

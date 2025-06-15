@@ -68,21 +68,27 @@ public class MainActivity extends AppCompatActivity {
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                if (item.getItemId() == R.id.cell_towers_map) {
+                if (item.getItemId() == R.id.home) {
                     drawerLayout.closeDrawer(GravityCompat.START);
-                    toolbar.setTitle(R.string.toolbar_cell_towers_map);
-                    fragmentR(new CellTowersMapFragment());
+                    toolbar.setTitle(R.string.nav_home);
+                    fragmentR(new MainFragment());
                     return true;
                 }
-                if (item.getItemId() == R.id.cell_tower) {
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                    toolbar.setTitle(R.string.toolbar_cell_tower);
-                    fragmentR(new CellTowerFragment());
-                    return true;
-                }
+//                if (item.getItemId() == R.id.cell_towers_map) {
+//                    drawerLayout.closeDrawer(GravityCompat.START);
+//                    toolbar.setTitle(R.string.nav_cell_towers_map);
+//                    fragmentR(new CellTowersMapFragment());
+//                    return true;
+//                }
+//                if (item.getItemId() == R.id.cell_tower) {
+//                    drawerLayout.closeDrawer(GravityCompat.START);
+//                    toolbar.setTitle(R.string.nav_cell_tower);
+//                    fragmentR(new CellTowerFragment());
+//                    return true;
+//                }
                 if (item.getItemId() == R.id.settings) {
                     drawerLayout.closeDrawer(GravityCompat.START);
-                    toolbar.setTitle(R.string.toolbar_settings);
+                    toolbar.setTitle(R.string.nav_settings);
                     fragmentR(new SettingsFragment());
                     return true;
                 }
