@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import com.blackghost.phantom.Fragments.CellTowersMapFragment;
 import com.blackghost.phantom.Fragments.MainFragment;
 import com.blackghost.phantom.Fragments.SettingsFragment;
 import com.blackghost.phantom.Managers.PhoneStateManager;
+import com.blackghost.phantom.Service.Background;
 import com.google.android.material.navigation.NavigationView;
 
 import android.app.NotificationChannel;
@@ -48,6 +50,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        Intent serviceIntent = new Intent(this, Background.class);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(serviceIntent);
+        } else {
+            startService(serviceIntent);
+        }
+
 
         drawerLayout = findViewById(R.id.drawerLayout);
         toolbar = findViewById(R.id.toolbar);
